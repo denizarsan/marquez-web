@@ -22,6 +22,11 @@ Run the project
 npm start
 ```
 
+The app will be running on the following link
+```
+localhost:8000/app/index.html
+```
+
 ## License
 
 ```
