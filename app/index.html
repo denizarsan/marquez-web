@@ -11,41 +11,29 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="styles/app.css">
+    <link rel="stylesheet" href="styles/header.css">
 
   </head>
 
   <body>
 
     <!-- Header -->
-    <ul class="nav nav-pills">
-      <li ui-sref-active="active">
-        <a ui-sref="home">Home</a>
-      </li>
-      <li ui-sref-active="active">
-        <a ui-sref="performances">Performances</a>
-      </li>
-      <li ui-sref-active="active">
-        <a ui-sref="recordings">Recordings</a>
-      </li>
-      <li ui-sref-active="active">
-        <a ui-sref="gallery">Gallery</a>
-      </li>
-      <li ui-sref-active="active">
-        <a ui-sref="contact">Contact</a>
-      </li>
-    </ul>
+    <div marquez-header></div>
 
     <!-- Main View -->
-    <div ui-view></div>
+    <div ui-view class="MainView container"></div>
 
     <!-- Lib Files -->
+    <script src="lib/jquery-2.1.4.js"></script>
     <script src="lib/angular.js"></script>
     <script src="lib/angular-ui-router.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.js"></script>
 
     <!-- App Files -->
     <script src="app.js"></script>
     <script src="modules/contact/contact.js"></script>
     <script src="modules/gallery/gallery.js"></script>
+    <script src="modules/header/header.js"></script>
     <script src="modules/home/home.js"></script>
     <script src="modules/performances/performances.js"></script>
     <script src="modules/recordings/recordings.js"></script>

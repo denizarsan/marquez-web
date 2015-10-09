@@ -1,0 +1,10 @@
+.Header {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.Header-contents {
+  border: none;
+  margin-bottom: 0;
+  background-color: whitesmoke;
+}
