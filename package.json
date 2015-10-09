@@ -1,0 +1,14 @@
+{
+    "name": "marquez-web",
+    "private": true,
+    "version": "0.1.0",
+    "description": "A personal website for Çınar Atilla",
+    "repository": "https://github.com/denizarsan/marquez-web",
+    "license": "MIT",
+    "devDependencies": {
+        "http-server": "^0.6.1"
+    },
+    "scripts": {
+        "start": "http-server -a localhost -p 8000 -c-1"
+    }
+}
