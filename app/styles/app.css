@@ -1,19 +1,12 @@
 html, body {
   height: 100%;
   overflow: visible;
-  background-color: whitesmoke;
 }
 
 html {
   overflow-y: scroll;
 }
 
-body {
-  padding-top: 50px
-}
-
 .MainView {
-  min-height: 100%;
   padding-top: 20px;
-  background-color: #fff;
 }
