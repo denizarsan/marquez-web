@@ -1,9 +1,11 @@
 angular.module('marquez-web', [
 
     'ui.router',
-    'marquez-web.view1',
-    'marquez-web.view2',
-    'marquez-web.version'])
+    'marquez-web.contact',
+    'marquez-web.gallery',
+    'marquez-web.home',
+    'marquez-web.performances',
+    'marquez-web.recordings'])
 
     .config([
 
@@ -13,6 +15,6 @@ angular.module('marquez-web', [
         function($locationProvider,
                  $urlRouterProvider) {
 
-            $urlRouterProvider.otherwise('/view1');
+            $urlRouterProvider.otherwise('/');
         }
     ]);

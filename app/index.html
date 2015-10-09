@@ -1,41 +1,55 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="en" ng-app="marquez-web" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="en" ng-app="marquez-web" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="en" ng-app="marquez-web" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" ng-app="marquez-web" class="no-js"> <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Çınar Atilla</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css">
-  <link rel="stylesheet" href="styles/app.css">
-</head>
-<body>
-  <ul class="menu">
-    <li><a ui-sref="view1">view1</a></li>
-    <li><a ui-sref="view2">view2</a></li>
-  </ul>
+<html lang="en" ng-app="marquez-web">
 
-  <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-  <![endif]-->
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Çınar Atilla</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <div ui-view></div>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="styles/app.css">
 
-  <div>Angular seed app: v<span app-version></span></div>
+  </head>
 
-  <!-- In production use:
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
-  -->
-  <script src="lib/angular.js"></script>
-  <script src="lib/angular-ui-router.js"></script>
-  <script src="app.js"></script>
-  <script src="modules/view1/view1.js"></script>
-  <script src="modules/view2/view2.js"></script>
-  <script src="modules/components/version/version.js"></script>
-  <script src="modules/components/version/version-directive.js"></script>
-  <script src="modules/components/version/interpolate-filter.js"></script>
-</body>
+  <body>
+
+    <!-- Header -->
+    <ul class="nav nav-pills">
+      <li ui-sref-active="active">
+        <a ui-sref="home">Home</a>
+      </li>
+      <li ui-sref-active="active">
+        <a ui-sref="performances">Performances</a>
+      </li>
+      <li ui-sref-active="active">
+        <a ui-sref="recordings">Recordings</a>
+      </li>
+      <li ui-sref-active="active">
+        <a ui-sref="gallery">Gallery</a>
+      </li>
+      <li ui-sref-active="active">
+        <a ui-sref="contact">Contact</a>
+      </li>
+    </ul>
+
+    <!-- Main View -->
+    <div ui-view></div>
+
+    <!-- Lib Files -->
+    <script src="lib/angular.js"></script>
+    <script src="lib/angular-ui-router.js"></script>
+
+    <!-- App Files -->
+    <script src="app.js"></script>
+    <script src="modules/contact/contact.js"></script>
+    <script src="modules/gallery/gallery.js"></script>
+    <script src="modules/home/home.js"></script>
+    <script src="modules/performances/performances.js"></script>
+    <script src="modules/recordings/recordings.js"></script>
+
+  </body>
+
 </html>
