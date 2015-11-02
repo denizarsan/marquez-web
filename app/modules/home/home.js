@@ -3,7 +3,7 @@ angular.module('marquez-web.home', [])
     .config(['$stateProvider', function($stateProvider) {
         $stateProvider.state('home', {
             url: '/',
-            templateUrl: 'modules/home/home.html',
+            templateUrl: '/home/home.html',
             controller: 'HomeController'
         });
     }])

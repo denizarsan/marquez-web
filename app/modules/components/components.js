@@ -10,7 +10,7 @@ angular.module('marquez-web.components', [])
                     mediaList: '='
                 },
                 controller: 'MediaGalleryController',
-                templateUrl: 'modules/components/media-gallery.html'
+                templateUrl: '/components/media-gallery.html'
             };
         }
     ])

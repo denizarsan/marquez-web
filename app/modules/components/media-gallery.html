@@ -12,12 +12,13 @@
     </div>
 
     <div class="MediaGallery-imageWrapper" ng-if="type === 'image'">
-      <img class="MediaGallery-image" ng-src="{{ currentMedia.url }}">
+      <img class="MediaGallery-image" ng-src="{{ currentMedia.url }}"/>
     </div>
 
     <div class="MediaGallery-videoWrapper" ng-if="type === 'video'">
       <iframe class="MediaGallery-video" id="ytplayer" type="text/html"
-              ng-src="{{ currentMedia.url | trustAsResourceUrl }}"/>
+              ng-src="{{ currentMedia.url | trustAsResourceUrl }}">
+      </iframe>
     </div>
 
     <div class="MediaGallery-caption">{{ currentMedia.caption }}</div>
