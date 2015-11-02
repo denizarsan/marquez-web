@@ -3,7 +3,7 @@ angular.module('marquez-web.performances', [])
     .config(['$stateProvider', function($stateProvider) {
         $stateProvider.state('performances', {
             url: '/performances',
-            templateUrl: 'modules/performances/performances.html',
+            templateUrl: '/performances/performances.html',
             controller: 'PerformancesController'
         });
     }])

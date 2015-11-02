@@ -15,7 +15,7 @@ module.exports = function(grunt) {
         },
 
         concat: {
-            build: {
+            js: {
                 files: [
                     {
                         dest: 'build/js/preload.js',
@@ -35,10 +35,16 @@ module.exports = function(grunt) {
                     }, {
                         dest: 'build/js/app.js',
                         src: [
+                            'app/app.js',
                             'app/modules/**/*.js',
                             'build/js/templates.js'
                         ]
-                    }, {
+                    }
+                ]
+            },
+            css: {
+                files: [
+                    {
                         dest: 'build/css/lib.css',
                         src: ['app/lib/bootstrap/css/bootstrap.css']
                     }, {
@@ -64,6 +70,7 @@ module.exports = function(grunt) {
                         '!app/lib/es5-shim.js'
                     ],
                     'build/js/app.js': [
+                        'app/app.js',
                         'app/modules/**/*.js',
                         'build/js/templates.js'
                     ]
@@ -76,17 +83,12 @@ module.exports = function(grunt) {
                 files: [
                     {
                         expand: true,
-                        cwd: 'app/lib/bootstrap/css/',
-                        src: ['bootstrap.css'],
-                        dest: 'build/css/lib',
-                        ext: '.min.css'
-                    },
-                    {
-                        expand: true,
-                        cwd: 'app/styles/',
-                        src: ['*.css'],
-                        dest: 'build/css/app',
-                        ext: '.min.css'
+                        cwd: 'build/css/',
+                        src: [
+                            'lib.css',
+                            'app.css'
+                        ],
+                        dest: 'build/css/'
                     }
                 ]
             }
@@ -159,7 +161,7 @@ module.exports = function(grunt) {
                     'app/modules/**/*js',
                     'app/lib/**/*js'
                 ],
-                tasks: ['concat:build'],
+                tasks: ['concat'],
                 options: {
                     livereload: true,
                     interval: 500
@@ -171,7 +173,7 @@ module.exports = function(grunt) {
                     'app/**/*.html'
                 ],
                 tasks: ['ngtemplates:build',
-                        'concat:build'
+                        'concat'
                 ],
                 options: {
                     livereload: true,
@@ -183,7 +185,7 @@ module.exports = function(grunt) {
                     'app/styles/*.css',
                     'app/lib/**/*.css'
                 ],
-                tasks: ['concat:build'],
+                tasks: ['concat'],
                 options: {
                     livereload: true,
                     interval: 500
@@ -218,6 +220,7 @@ module.exports = function(grunt) {
                        'connect',
                        'ngtemplates',
                        'uglify',
+                       'concat:css',
                        'cssmin',
                        'copy',
                        'watch'
