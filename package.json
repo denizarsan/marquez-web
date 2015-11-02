@@ -20,6 +20,6 @@
   },
   "scripts": {
     "start": "grunt build-dev",
-    "start-prod": "grunt build-prod"
+    "prod": "grunt build-prod"
   }
 }
