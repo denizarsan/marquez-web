@@ -15,7 +15,6 @@
     "grunt-contrib-cssmin": "^0.14.0",
     "grunt-contrib-uglify": "~0.5.1",
     "grunt-contrib-watch": "~0.6.1",
-    "grunt-jscs": "~0.7.1",
     "load-grunt-tasks": "^3.3.0"
   },
   "scripts": {
