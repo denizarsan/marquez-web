@@ -10,7 +10,7 @@ angular.module('marquez-web.header', [])
 
             return {
                 controller: 'HeaderController',
-                templateUrl: 'modules/header/header.html'
+                templateUrl: '/header/header.html'
             };
         }
     ]);
