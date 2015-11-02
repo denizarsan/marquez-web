@@ -1,6 +1,7 @@
 angular.module('marquez-web', [
 
     'ui.router',
+    'marquez-web.components',
     'marquez-web.contact',
     'marquez-web.gallery',
     'marquez-web.header',

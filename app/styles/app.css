@@ -7,6 +7,8 @@ html {
   overflow-y: scroll;
 }
 
-.MainView {
-  padding-top: 20px;
+@media (min-width: 768px) {
+  .MainView {
+    padding-top: 20px;
+  }
 }

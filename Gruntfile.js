@@ -104,6 +104,11 @@ module.exports = function(grunt) {
                         cwd: 'app/images/',
                         src: ['**'],
                         dest: 'build/images/'
+                    },{
+                        expand: true,
+                        cwd: 'app/lib/bootstrap/fonts/',
+                        src: ['**'],
+                        dest: 'build/fonts/'
                     }, {
                         expand: true,
                         cwd: 'app/',
