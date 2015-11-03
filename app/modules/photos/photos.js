@@ -1,14 +1,14 @@
-angular.module('marquez-web.gallery', [])
+angular.module('marquez-web.photos', [])
 
     .config(['$stateProvider', function($stateProvider) {
-        $stateProvider.state('gallery', {
-            url: '/gallery',
-            templateUrl: '/gallery/gallery.html',
-            controller: 'GalleryController'
+        $stateProvider.state('photos', {
+            url: '/photos',
+            templateUrl: '/photos/photos.html',
+            controller: 'PhotosController'
         });
     }])
 
-    .controller('GalleryController', [
+    .controller('PhotosController', [
 
         '$scope',
 
