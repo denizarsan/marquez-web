@@ -16,7 +16,7 @@ angular.module('marquez-web.recordings', [])
 
             $scope.getSongUrl = function(embedUrl) {
                 var staticUrl = 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/',
-                    options = '&amp;color=333&amp;show_playcount=false&amp;show_comments=false&amp;show_user=false&amp;show_title=false',
+                    options = '&color=333&show_playcount=false&show_comments=false&show_user=false&show_title=false',
                     trackIdRegex = /api\.soundcloud\.com\/tracks\/(\d*)/,
                     trackId = trackIdRegex.exec(embedUrl)[1];
 
