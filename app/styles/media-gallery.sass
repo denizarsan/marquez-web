@@ -6,7 +6,7 @@ $media-gallery-video-min-height: 320px
   margin: 0 (-$grid-gutter-width / 2)
 
   @media (min-width: $screen-sm-min)
-    padding: $grid-gutter-width
+    padding: $grid-gutter-width * 2
     background-color: $primary
     border-radius: $border-radius-xlarge
     height: $media-gallery-spotlight-height
@@ -17,17 +17,17 @@ $media-gallery-video-min-height: 320px
   +user-select(none)
   position: absolute
   top: 50%
-  width: $grid-gutter-width
+  width: $grid-gutter-width * 2
   height: 100%
   cursor: pointer
 
   .glyphicon
     font-size: $font-size-xlarge
     color: $gray-lighter
-    padding: 0 5px
+    padding: 0 16px
 
     @media (min-width: $screen-sm-min)
-      color: $gray-dark
+      color: $dark-gray
 
 .MediaGallery-leftNavigation
   @extend %MediaGallery-navigation
@@ -63,6 +63,7 @@ $media-gallery-video-min-height: 320px
 
   @media (min-width: $screen-sm-min)
     margin: 0
+    margin-top: 5px
     font-size: $font-size-medium
 
 .MediaGallery-thumbnails
