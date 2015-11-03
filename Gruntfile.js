@@ -11,7 +11,7 @@ module.exports = function(grunt) {
         },
 
         concat: {
-            js: {
+            build: {
                 files: [
                     {
                         dest: 'build/js/preload.js',
@@ -24,8 +24,7 @@ module.exports = function(grunt) {
                         src: [
                             'app/lib/angular.js',
                             'app/lib/*.js',
-                            'app/lib/**/*.js',
-                            '!app/lib/**/*.min.js',
+                            'app/lib/*/*.js',
                             '!app/lib/modernizr*.js',
                             '!app/lib/es5-shim.js'
                         ]
@@ -38,17 +37,15 @@ module.exports = function(grunt) {
                         ]
                     }
                 ]
-            },
-            css: {
-                files: [
-                    {
-                        dest: 'build/css/lib.css',
-                        src: ['app/lib/bootstrap/css/bootstrap.css']
-                    }, {
-                        dest: 'build/css/app.css',
-                        src: ['app/styles/*.css']
-                    }
-                ]
+            }
+        },
+
+        sass: {
+            build: {
+                files: {
+                    'build/css/lib.css': ['app/styles/bootstrap-custom.sass'],
+                    'build/css/app.css': ['app/styles/core.sass']
+                }
             }
         },
 
@@ -63,8 +60,7 @@ module.exports = function(grunt) {
                         'app/lib/angular.js',
                         'app/lib/*.js',
                         'app/lib/**/*.js',
-                        '!app/lib/**/*.min.js',
-                        '!app/lib/modernizr-2.8.2.js',
+                        '!app/lib/modernizr*.js',
                         '!app/lib/es5-shim.js'
                     ],
                     'build/js/app.js': [
@@ -76,46 +72,28 @@ module.exports = function(grunt) {
             }
         },
 
-        cssmin: {
-            build: {
-                files: [
-                    {
-                        expand: true,
-                        cwd: 'build/css/',
-                        src: [
-                            'lib.css',
-                            'app.css'
-                        ],
-                        dest: 'build/css/'
-                    }
-                ]
-            }
-        },
-
         copy: {
             build: {
                 files: [
                     {
                         expand: true,
+                        dest: 'build/',
                         cwd: 'app/',
-                        src: ['index.html'],
-                        dest: 'build/'
+                        src: [
+                            'index.html',
+                            'robots.txt'
+                        ]
                     },
                     {
                         expand: true,
+                        dest: 'build/images/',
                         cwd: 'app/images/',
-                        src: ['**'],
-                        dest: 'build/images/'
+                        src: ['**']
                     },{
                         expand: true,
-                        cwd: 'app/lib/bootstrap/fonts/',
-                        src: ['**'],
-                        dest: 'build/fonts/'
-                    }, {
-                        expand: true,
-                        cwd: 'app/',
-                        src: ['robots.txt'],
-                        dest: 'build/'
+                        dest: 'build/fonts/',
+                        cwd: 'app/lib/bootstrap-sass/fonts/',
+                        src: ['**']
                     }
                 ]
             }
@@ -123,9 +101,9 @@ module.exports = function(grunt) {
 
         ngtemplates: {
             build: {
+                dest: 'build/js/templates.js',
                 cwd: 'app/modules/',
                 src: '**/*.html',
-                dest: 'build/js/templates.js',
                 options: {
                     module: 'marquez-web',
                     prefix: '/',
@@ -161,6 +139,7 @@ module.exports = function(grunt) {
         watch: {
             js: {
                 files: [
+                    'app/app.js',
                     'app/modules/**/*js',
                     'app/lib/**/*js'
                 ],
@@ -175,20 +154,21 @@ module.exports = function(grunt) {
                     'app/index.html',
                     'app/**/*.html'
                 ],
-                tasks: ['ngtemplates:build',
-                        'concat'
+                tasks: [
+                    'ngtemplates:build',
+                    'concat'
                 ],
                 options: {
                     livereload: true,
                     interval: 500
                 }
             },
-            css: {
+            sass: {
                 files: [
-                    'app/styles/*.css',
-                    'app/lib/**/*.css'
+                    'app/styles/*.sass',
+                    'app/lib/**/*.sass'
                 ],
-                tasks: ['concat'],
+                tasks: ['sass'],
                 options: {
                     livereload: true,
                     interval: 500
@@ -198,7 +178,7 @@ module.exports = function(grunt) {
                 files: [
                     'app/images/**'
                 ],
-                tasks: ['copy:build'],
+                tasks: ['copy'],
                 options: {
                     livereload: true,
                     interval: 500
@@ -208,24 +188,6 @@ module.exports = function(grunt) {
     });
 
     require('load-grunt-tasks')(grunt);
-
-    grunt.registerTask('build-dev', [
-                       'clean',
-                       'connect',
-                       'ngtemplates',
-                       'concat',
-                       'copy',
-                       'watch'
-    ]);
-
-    grunt.registerTask('build-prod', [
-                       'clean',
-                       'connect',
-                       'ngtemplates',
-                       'uglify',
-                       'concat:css',
-                       'cssmin',
-                       'copy',
-                       'watch'
-    ]);
+    grunt.registerTask('build-dev', ['clean', 'connect', 'ngtemplates', 'concat', 'sass', 'copy', 'watch']);
+    grunt.registerTask('build-prod', ['clean', 'connect', 'ngtemplates', 'uglify', 'sass', 'copy', 'watch']);
 };
