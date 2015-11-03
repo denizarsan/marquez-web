@@ -6,6 +6,7 @@ html
   overflow-y: scroll
 
 .MainView
+  +make-container()
 
-  @media (min-width: 768px)
-    padding-top: 20px;
+  @media (min-width: $screen-sm-min)
+    padding-top: $grid-gutter-width;

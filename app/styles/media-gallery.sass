@@ -1,88 +1,109 @@
+$media-gallery-spotlight-height: 600px
+$media-gallery-video-min-height: 320px
+
 .MediaGallery-spotlight
   position: relative
-  margin: 0px -15px
+  margin: 0 (-$grid-gutter-width / 2)
 
-.MediaGallery-navigations .glyphicon
-  font-size: 25px
-  color: #e5e5e5
-  padding: 0 10px
+  @media (min-width: $screen-sm-min)
+    padding: $grid-gutter-width
+    background-color: $primary
+    border-radius: $border-radius-xlarge
+    height: $media-gallery-spotlight-height
+    box-shadow: $box-shadow-out
+    margin: 0
+
+%MediaGallery-navigation
+  +user-select(none)
+  position: absolute
+  top: 50%
+  width: $grid-gutter-width
+  height: 100%
+  cursor: pointer
+
+  .glyphicon
+    font-size: $font-size-xlarge
+    color: $gray-lighter
+    padding: 0 5px
+
+    @media (min-width: $screen-sm-min)
+      color: $gray-dark
 
 .MediaGallery-leftNavigation
-  position: absolute
-  top: 50%
+  @extend %MediaGallery-navigation
+  +border-left-radius($border-radius-xlarge)
   left: 0
-  width: 40px
-  height: 100%
-  cursor: pointer
-  outline: none
-  border-radius: 10px 0 0 10px
-  -webkit-user-select: none
-  -moz-user-select: none
-  -ms-user-select: none
-  user-select: none
 
 .MediaGallery-rightNavigation
-  position: absolute
-  top: 50%
+  @extend %MediaGallery-navigation
+  +border-right-radius($border-radius-xlarge)
   right: 0
-  width: 40px
-  height: 100%
-  cursor: pointer
-  outline: none
-  border-radius: 0 10px 10px 0
-  -webkit-user-select: none
-  -moz-user-select: none
-  -ms-user-select: none
-  user-select: none
 
 .MediaGallery-imageWrapper,
 .MediaGallery-videoWrapper
-  width: 100%
-  height: 100%
+  +fill-parent()
   text-align: center
 
 .MediaGallery-image
-  max-height: 100%
-  max-width: 100%
+  +fill-parent-max()
+
+  @media (min-width: $screen-sm-min)
+    +vertical-center()
+    border-radius: $border-radius-xlarge
 
 .MediaGallery-video
-  width: 100%
-  height: 100%
+  +fill-parent()
+  min-height: $media-gallery-video-min-height
   border: none
-  min-height: 320px
 
 .MediaGallery-caption
   text-align: center
-  margin: 15px
-  font-size: 14px
+  margin: $grid-gutter-width / 2
   font-weight: 300
 
+  @media (min-width: $screen-sm-min)
+    margin: 0
+    font-size: $font-size-medium
+
 .MediaGallery-thumbnails
-  margin: 0 -20px
-  background: #f5f5f5
-  padding: 10px
-  box-shadow: 0 0 5px inset
+  +make-row()
+  background: $primary
+  padding: $grid-gutter-width / 2
+  box-shadow: $box-shadow-in
 
-.MediaGallery-thumbnails:after
-  content: ""
-  display: table
-  clear: both
-
-.MediaGallery-thumbnail:before
-  display: block
-  content: ""
-  width: 100%
-  padding-top: 100%
+  @media (min-width: $screen-sm-min)
+    margin: $grid-gutter-width 0
+    border-radius: $border-radius-xlarge
 
 .MediaGallery-thumbnail
-  position: relative
-  float: left
-  width: 50%
-  border: 2px solid transparent
+  +make-xs-column($two-column-layout, 0)
+  +make-sm-column($five-column-layout, 0)
+  border: $border-spacing-sm
   cursor: pointer
 
+  &:before
+    display: block
+    content: ""
+    width: 100%
+    padding-top: 100%
+
+  @media (min-width: $screen-sm-min)
+    +hover-grow(.4s, 1.1)
+    border: $border-spacing-lg
+
 .MediaGallery-thumbnail--selected
-  border: 5px solid #333
+  border: $border-selected
+
+  @media (min-width: $screen-sm-min)
+    border: $border-spacing-md
+    border-radius: $border-radius-xxlarge
+
+    .MediaGallery-thumbnailImage
+        border: $border-selected
+
+.MediaGallery-thumbnail--selected:hover
+  -webkit-transform: none
+  transform: none
 
 .MediaGallery-thumbnailImageWrapper
   position: absolute
@@ -92,60 +113,7 @@
   bottom: 0
 
 .MediaGallery-thumbnailImage
-  height: 100%
-  width: 100%
+  +fill-parent()
 
-@media (min-width: 768px)
-
-  .MediaGallery-spotlight
-    padding: 40px
-    background-color: #f5f5f5
-    border-radius: 10px
-    height: 600px
-    box-shadow: 0 0 5px
-    margin: 0
-
-  .MediaGallery-navigations .glyphicon
-    color: #333
-
-  .MediaGallery-image
-    border-radius: 10px
-    position: relative
-    top: 50%
-    -webkit-transform: translateY(-50%)
-    -ms-transform: translateY(-50%)
-    transform: translateY(-50%)
-
-  .MediaGallery-caption
-    margin-top: 5px
-    font-size: 16px
-
-  .MediaGallery-thumbnails
-    margin: 30px 0
-    border-radius: 10px
-
-  .MediaGallery-thumbnail
-    width: 20%
-    border: 10px solid transparent
-    -webkit-transition-duration: 0.4s
-    transition-duration: 0.4s
-    -webkit-transition-property: transform
-    transition-property: transform
-
-  .MediaGallery-thumbnail:hover
-    -webkit-transform: scale(1.1)
-    transform: scale(1.1)
-
-  .MediaGallery-thumbnail--selected:hover
-    -webkit-transform: none
-    transform: none
-
-  .MediaGallery-thumbnailImage
-    border-radius: 10px
-
-  .MediaGallery-thumbnail--selected
-    border: 5px solid transparent
-    border-radius: 15px
-
-  .MediaGallery-thumbnail--selected .MediaGallery-thumbnailImage
-    border: 5px solid #333
+  @media (min-width: $screen-sm-min)
+    border-radius: $border-radius-xlarge

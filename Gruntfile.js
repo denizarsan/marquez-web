@@ -24,7 +24,7 @@ module.exports = function(grunt) {
                         src: [
                             'app/lib/angular.js',
                             'app/lib/*.js',
-                            'app/lib/**/*.js',
+                            'app/lib/*/*.js',
                             '!app/lib/modernizr*.js',
                             '!app/lib/es5-shim.js'
                         ]
