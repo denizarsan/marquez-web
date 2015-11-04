@@ -1,10 +1,83 @@
 .Header
-  padding-right: 0
-  padding-left: 0
   background-color: $primary
   border-bottom: $border-light
 
 .Header-contents
-  border: none
-  margin-bottom: 0
+  +make-container()
+
+.Header-brand
+  position: relative
+  float: left
+  font-size: 18px
+  font-weight: 300
+  padding: 15px
+  cursor: default
+
+.Header-navigations
+  position: relative
+  float: left
+  font-weight: 300
+  display: none
+
+  @media (min-width: $screen-sm-min)
+    display: block
+
+.Header-navigation
+  display: inline-block
+
+.Header-link
+  +kill-link-style()
+  display: block
+  line-height: 25px
+  padding: 15px 20px
+
+  &:hover
+    padding: 15px 20px 10px
+    border-bottom: $border-thick
+
+  &.active
+    background-color: $lighter-gray
+
+  &.active:hover
+    padding: 15px 20px
+    border-bottom: none
+
+.Header-toggle
+  position: relative
+  float: right
+
+  @media (min-width: $screen-sm-min)
+    display: none
+
+.Header-button
   background-color: transparent
+  border: $border
+  padding: $padding-base-vertical $padding-base-horizontal
+  border-radius: $border-radius-base
+  margin: 9px 15px
+
+.Header-buttonIcon
+  font-size: 18px
+
+.Header-menu
+  position: absolute
+  top: 55px
+  left: 0
+  width: 100%
+  background-color: $primary
+  border-top: $border-light
+  border-bottom: $border-light
+  font-weight: 300
+  z-index: 1
+
+.Header-menuList
+  list-style: none
+  padding: 0
+
+.Header-menuItem.active
+  background-color: $lighter-gray
+
+.Header-menuLink
+  +kill-link-style()
+  display: block
+  padding: 10px 30px

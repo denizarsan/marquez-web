@@ -1,8 +1,19 @@
 angular.module('marquez-web.header', [])
 
-    .controller('HeaderController', [function() {
+    .controller('HeaderController', [
 
-    }])
+        '$scope',
+
+        function($scope) {
+
+            $scope.showMenu = false;
+
+            $scope.toggleMenu = function() {
+                $scope.showMenu = !$scope.showMenu;
+            };
+
+        }
+    ])
 
     .directive('marquezHeader', [
 
