@@ -1,0 +1,59 @@
+.Home
+  padding-top: 0
+  width: 100%
+
+.Home-hero
+  height: 480px
+  background-image: url("/images/home-hero.png")
+  background-color: #000
+  background-repeat: no-repeat
+  background-position: center 30px
+
+  @media (min-width: $screen-sm-min)
+    height: 760px
+    background-position: 100% 0
+
+.Home-heroCopy
+  padding-top: 50px
+
+  @media (min-width: $screen-sm-min)
+    +vertical-center()
+    left: 10%
+    padding-top: 0
+
+.Home-heroTitle
+  font-size: 36px
+  color: $primary
+  font-weight: 300
+  text-align: center
+
+  @media (min-width: $screen-sm-min)
+    font-size: 80px
+    text-align: left
+
+.Home-heroSubtitle
+  font-size: 24px
+  color: $light-gray
+  font-weight: 100
+  text-align: center
+
+  @media (min-width: $screen-sm-min)
+    font-size: 40px
+    text-align: left
+
+.Home-about
+  +make-container()
+  margin-top: 60px
+  margin-bottom: 60px
+
+.Home-portrait
+  +make-sm-column($two-column-layout)
+  text-align: center
+
+.Home-portraitImage
+  border: $border-thick
+  border-radius: 50%
+
+.Home-text
+  +make-sm-column($two-column-layout)
+

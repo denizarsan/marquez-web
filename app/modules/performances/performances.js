@@ -17,37 +17,37 @@ angular.module('marquez-web.performances', [])
                 {
                     url: 'http://www.youtube.com/embed/M7lc1UVf-VE',
                     thumbnailUrl: 'http://img.youtube.com/vi/M7lc1UVf-VE/hqdefault.jpg',
-                    caption: 'My Pet Bear 1'
+                    caption: 'My awesome performance 1'
                 },
                 {
                     url: 'http://www.youtube.com/embed/M7lc1UVf-VE',
                     thumbnailUrl: 'http://img.youtube.com/vi/M7lc1UVf-VE/hqdefault.jpg',
-                    caption: 'My Pet Bear 2'
+                    caption: 'My awesome performance 2'
                 },
                 {
                     url: 'http://www.youtube.com/embed/M7lc1UVf-VE',
                     thumbnailUrl: 'http://img.youtube.com/vi/M7lc1UVf-VE/hqdefault.jpg',
-                    caption: 'My Pet Bear 3'
+                    caption: 'My awesome performance 3'
                 },
                 {
                     url: 'http://www.youtube.com/embed/M7lc1UVf-VE',
                     thumbnailUrl: 'http://img.youtube.com/vi/M7lc1UVf-VE/hqdefault.jpg',
-                    caption: 'My Pet Bear 4'
+                    caption: 'My awesome performance 4'
                 },
                 {
                     url: 'http://www.youtube.com/embed/M7lc1UVf-VE',
                     thumbnailUrl: 'http://img.youtube.com/vi/M7lc1UVf-VE/hqdefault.jpg',
-                    caption: 'My Pet Bear 5'
+                    caption: 'My awesome performance 5'
                 },
                 {
                     url: 'http://www.youtube.com/embed/M7lc1UVf-VE',
                     thumbnailUrl: 'http://img.youtube.com/vi/M7lc1UVf-VE/hqdefault.jpg',
-                    caption: 'My Pet Bear 6'
+                    caption: 'My awesome performance 6'
                 },
                 {
                     url: 'http://www.youtube.com/embed/M7lc1UVf-VE',
                     thumbnailUrl: 'http://img.youtube.com/vi/M7lc1UVf-VE/hqdefault.jpg',
-                    caption: 'My Pet Bear 7'
+                    caption: 'My awesome performance 7'
                 }
             ];
         }

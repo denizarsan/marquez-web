@@ -9,13 +9,17 @@
   position: relative
   float: left
   font-size: 18px
-  font-weight: 300
+  font-weight: 100
   padding: 15px
   cursor: default
 
+  @media (min-width: $screen-sm-min)
+    padding: 30px 15px
+    font-size: 28px
+
 .Header-navigations
   position: relative
-  float: left
+  float: right
   font-weight: 300
   display: none
 
@@ -28,19 +32,17 @@
 .Header-link
   +kill-link-style()
   display: block
-  line-height: 25px
-  padding: 15px 20px
+  line-height: 40px
+  padding: 30px 20px
 
   &:hover
-    padding: 15px 20px 10px
-    border-bottom: $border-thick
+    color: $secondary
 
   &.active
     background-color: $lighter-gray
 
   &.active:hover
-    padding: 15px 20px
-    border-bottom: none
+    color: $dark-gray
 
 .Header-toggle
   position: relative
@@ -55,6 +57,7 @@
   padding: $padding-base-vertical $padding-base-horizontal
   border-radius: $border-radius-base
   margin: 9px 15px
+  outline: none
 
 .Header-buttonIcon
   font-size: 18px

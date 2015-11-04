@@ -29,40 +29,40 @@ angular.module('marquez-web.recordings', [])
                          'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/220090922' +
                          '&amp;color=333&amp;show_playcount=false&amp;show_comments=false&amp;show_user=false">' +
                          '</iframe>',
-                    title: 'My Fabulous Song 1',
-                    caption: 'This is my fabulous song 1'
+                    title: 'My Awesome Song 1',
+                    caption: 'This is my awesome song 1'
                 },
                 {
                     url: '<iframe width="100%" height="166" scrolling="no" frameborder="no" src="' +
                          'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/220090922' +
                          '&amp;color=333&amp;show_playcount=false&amp;show_comments=false&amp;show_user=false">' +
                          '</iframe>',
-                    title: 'My Fabulous Song 2',
-                    caption: 'This is my fabulous song 2'
+                    title: 'My Awesome Song 2',
+                    caption: 'This is my awesome song 2'
                 },
                 {
                     url: '<iframe width="100%" height="166" scrolling="no" frameborder="no" src="' +
                          'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/220090922' +
                          '&amp;color=333&amp;show_playcount=false&amp;show_comments=false&amp;show_user=false">' +
                          '</iframe>',
-                    title: 'My Fabulous Song 3',
-                    caption: 'This is my fabulous song 3'
+                    title: 'My Awesome Song 3',
+                    caption: 'This is my awesome song 3'
                 },
                 {
                     url: '<iframe width="100%" height="166" scrolling="no" frameborder="no" src="' +
                          'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/220090922' +
                          '&amp;color=333&amp;show_playcount=false&amp;show_comments=false&amp;show_user=false">' +
                          '</iframe>',
-                    title: 'My Fabulous Song 4',
-                    caption: 'This is my fabulous song 4'
+                    title: 'My Awesome Song 4',
+                    caption: 'This is my awesome song 4'
                 },
                 {
                     url: '<iframe width="100%" height="166" scrolling="no" frameborder="no" src="' +
                          'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/220090922' +
                          '&amp;color=333&amp;show_playcount=false&amp;show_comments=false&amp;show_user=false">' +
                          '</iframe>',
-                    title: 'My Fabulous Song 5',
-                    caption: 'This is my fabulous song 5'
+                    title: 'My Awesome Song 5',
+                    caption: 'This is my awesome song 5'
                 }
             ];
         }

@@ -2,7 +2,24 @@ $contact-form-input-height: 34px
 $contact-form-line-height: 20px
 
 .Contact
-  +make-row(0)
+  padding-top: 0
+  width: 100%
+
+.Contact-hero
+  height: 200px
+  background-image: url("/images/home-hero.png")
+  background-color: #000
+  background-repeat: no-repeat
+  background-position: center -120px
+
+  @media (min-width: $screen-sm-min)
+    height: 320px
+    background-position: 100% 0
+
+.Contact-contents
+  +make-container()
+  margin-top: 60px
+  margin-bottom: 60px
 
 .Contact-title
   margin: 30px 0
