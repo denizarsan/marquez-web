@@ -3,7 +3,6 @@ $media-gallery-video-min-height: 320px
 
 .MediaGallery-spotlight
   position: relative
-  margin: 0 (-$grid-gutter-width / 2)
 
   @media (min-width: $screen-sm-min)
     padding: $grid-gutter-width * 2
@@ -11,7 +10,6 @@ $media-gallery-video-min-height: 320px
     border-radius: $border-radius-xlarge
     height: $media-gallery-spotlight-height
     box-shadow: $box-shadow-out
-    margin: 0
 
 %MediaGallery-navigation
   +user-select(none)
@@ -67,7 +65,7 @@ $media-gallery-video-min-height: 320px
     font-size: $font-size-medium
 
 .MediaGallery-thumbnails
-  +make-row()
+  +make-row(0)
   background: $primary
   padding: $grid-gutter-width / 2
   box-shadow: $box-shadow-in
