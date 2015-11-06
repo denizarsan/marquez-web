@@ -1,5 +1,6 @@
 angular.module('marquez-web', [
 
+    'ngResource',
     'ui.router',
     'marquez-web.components',
     'marquez-web.contact',
