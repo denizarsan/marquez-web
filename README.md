@@ -1,5 +1,5 @@
 # marquez-web
-The web client for personal website of Çınar Atilla
+The web client for the personal website of Çınar Atilla
 
 ## Getting Started
 
