@@ -1,0 +1,14 @@
+{
+  "name": "marquez-api",
+  "private": true,
+  "description": "The API for the personal website for Çınar Atilla",
+  "version": "0.1.0",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "mongodb-uri": "^0.9.7",
+    "mongoose": "^4.2.4",
+    "restify": "^3.0.3"
+  }
+}
