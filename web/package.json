@@ -1,10 +1,12 @@
 {
   "name": "marquez-web",
   "private": true,
+  "description": "Web client for the personal website for Çınar Atilla",
   "version": "0.1.0",
-  "description": "A personal website for Çınar Atilla",
-  "repository": "https://github.com/denizarsan/marquez-web",
-  "license": "MIT",
+  "scripts": {
+    "start": "grunt build-dev",
+    "prod": "grunt build-prod"
+  },
   "devDependencies": {
     "grunt": "~0.4.5",
     "grunt-angular-templates": "~0.5.7",
@@ -16,9 +18,5 @@
     "grunt-contrib-watch": "~0.6.1",
     "grunt-sass": "^1.1.0",
     "load-grunt-tasks": "^3.3.0"
-  },
-  "scripts": {
-    "start": "grunt build-dev",
-    "prod": "grunt build-prod"
   }
 }
