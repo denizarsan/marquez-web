@@ -97,7 +97,7 @@ $media-gallery-video-min-height: 320px
     border: $border-spacing-md
     border-radius: $border-radius-xxlarge
 
-    .MediaGallery-thumbnailImage
+    .MediaGallery-thumbnailImageWrapper
         border: $border-thick-dark
 
 .MediaGallery-thumbnail--selected:hover
@@ -110,9 +110,13 @@ $media-gallery-video-min-height: 320px
   left: 0
   right: 0
   bottom: 0
-
-.MediaGallery-thumbnailImage
-  +fill-parent()
+  text-align: center
+  overflow: hidden
+  background-color: #000
 
   @media (min-width: $screen-sm-min)
     border-radius: $border-radius-xlarge
+
+.MediaGallery-thumbnailImage
+  +fill-parent()
+  background-size: cover

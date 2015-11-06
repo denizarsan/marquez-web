@@ -11,8 +11,10 @@ angular.module('marquez-web.recordings', [])
     .controller('RecordingsController', [
 
         '$scope',
+        'Resources',
 
-        function($scope) {
+        function($scope,
+                 Resources) {
 
             $scope.getSongUrl = function(embedUrl) {
                 var staticUrl = 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/',
@@ -23,47 +25,18 @@ angular.module('marquez-web.recordings', [])
                 return staticUrl + trackId + options;
             };
 
-            $scope.songList = [
-                {
-                    url: '<iframe width="100%" height="166" scrolling="no" frameborder="no" src="' +
-                         'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/220090922' +
-                         '&amp;color=333&amp;show_playcount=false&amp;show_comments=false&amp;show_user=false">' +
-                         '</iframe>',
-                    title: 'My Awesome Song 1',
-                    caption: 'This is my awesome song 1'
-                },
-                {
-                    url: '<iframe width="100%" height="166" scrolling="no" frameborder="no" src="' +
-                         'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/220090922' +
-                         '&amp;color=333&amp;show_playcount=false&amp;show_comments=false&amp;show_user=false">' +
-                         '</iframe>',
-                    title: 'My Awesome Song 2',
-                    caption: 'This is my awesome song 2'
-                },
-                {
-                    url: '<iframe width="100%" height="166" scrolling="no" frameborder="no" src="' +
-                         'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/220090922' +
-                         '&amp;color=333&amp;show_playcount=false&amp;show_comments=false&amp;show_user=false">' +
-                         '</iframe>',
-                    title: 'My Awesome Song 3',
-                    caption: 'This is my awesome song 3'
-                },
-                {
-                    url: '<iframe width="100%" height="166" scrolling="no" frameborder="no" src="' +
-                         'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/220090922' +
-                         '&amp;color=333&amp;show_playcount=false&amp;show_comments=false&amp;show_user=false">' +
-                         '</iframe>',
-                    title: 'My Awesome Song 4',
-                    caption: 'This is my awesome song 4'
-                },
-                {
-                    url: '<iframe width="100%" height="166" scrolling="no" frameborder="no" src="' +
-                         'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/220090922' +
-                         '&amp;color=333&amp;show_playcount=false&amp;show_comments=false&amp;show_user=false">' +
-                         '</iframe>',
-                    title: 'My Awesome Song 5',
-                    caption: 'This is my awesome song 5'
+            $scope.songList = [];
+            Resources.getSongs().$promise.then(
+                function getSongsSuccess(data) {
+                    _.each(data.songs, function(song) {
+                        $scope.songList.push({
+                            url: $scope.getSongUrl(song.url),
+                            title: song.title,
+                            caption: song.caption
+                        });
+                    });
                 }
-            ];
+            );
+
         }
-      ]);
+    ]);

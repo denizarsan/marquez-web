@@ -11,44 +11,24 @@ angular.module('marquez-web.photos', [])
     .controller('PhotosController', [
 
         '$scope',
+        'Resources',
 
-        function($scope) {
-            $scope.mediaList = [
-                {
-                    url: 'http://placebear.com/1280/768',
-                    thumbnailUrl: 'http://placebear.com/300/300',
-                    caption: 'My awesome photo 1'
-                },
-                {
-                    url: 'http://placebear.com/1280/768',
-                    thumbnailUrl: 'http://placebear.com/300/300',
-                    caption: 'My awesome photo 2'
-                },
-                {
-                    url: 'http://placebear.com/1280/768',
-                    thumbnailUrl: 'http://placebear.com/300/300',
-                    caption: 'My awesome photo 3'
-                },
-                {
-                    url: 'http://placebear.com/1280/768',
-                    thumbnailUrl: 'http://placebear.com/300/300',
-                    caption: 'My awesome photo 4'
-                },
-                {
-                    url: 'http://placebear.com/1280/768',
-                    thumbnailUrl: 'http://placebear.com/300/300',
-                    caption: 'My awesome photo 5'
-                },
-                {
-                    url: 'http://placebear.com/1280/768',
-                    thumbnailUrl: 'http://placebear.com/300/300',
-                    caption: 'My awesome photo 6'
-                },
-                {
-                    url: 'http://placebear.com/1280/768',
-                    thumbnailUrl: 'http://placebear.com/300/300',
-                    caption: 'My awesome photo 7'
+        function($scope,
+                 Resources) {
+
+            $scope.mediaList = [];
+
+            Resources.getImages().$promise.then(
+                function getImagesSuccess(data) {
+                    _.each(data.images, function(image) {
+                        $scope.mediaList.push({
+                            url: image.url,
+                            caption: image.caption,
+                            thumbnailUrl: image.url
+                        });
+                    });
                 }
-            ];
+            );
+
         }
     ]);

@@ -32,7 +32,10 @@
          ng-click="show($index)"
          ng-class="{ 'MediaGallery-thumbnail--selected': media === currentMedia }">
       <div class="MediaGallery-thumbnailImageWrapper">
-        <img class="MediaGallery-thumbnailImage" ng-src="{{ media.thumbnailUrl }}" title="{{ media.caption }}">
+        <div class="MediaGallery-thumbnailImage"
+             ng-style="{ 'background-image': 'url(' + media.thumbnailUrl + ')' }"
+             title="{{ media.caption }}">
+        </div>
       </div>
     </div>
 
