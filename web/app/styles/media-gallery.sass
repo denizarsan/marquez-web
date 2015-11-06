@@ -1,0 +1,118 @@
+$media-gallery-spotlight-height: 600px
+$media-gallery-video-min-height: 320px
+
+.MediaGallery-spotlight
+  position: relative
+
+  @media (min-width: $screen-sm-min)
+    padding: $grid-gutter-width * 2
+    background-color: $primary
+    border-radius: $border-radius-xlarge
+    height: $media-gallery-spotlight-height
+    box-shadow: $box-shadow-out
+
+%MediaGallery-navigation
+  +user-select(none)
+  position: absolute
+  top: 50%
+  width: $grid-gutter-width * 2
+  height: 100%
+  cursor: pointer
+
+  .glyphicon
+    font-size: $font-size-xlarge
+    color: $gray-lighter
+    padding: 0 16px
+
+    @media (min-width: $screen-sm-min)
+      color: $dark-gray
+
+.MediaGallery-leftNavigation
+  @extend %MediaGallery-navigation
+  +border-left-radius($border-radius-xlarge)
+  left: 0
+
+.MediaGallery-rightNavigation
+  @extend %MediaGallery-navigation
+  +border-right-radius($border-radius-xlarge)
+  right: 0
+
+.MediaGallery-imageWrapper,
+.MediaGallery-videoWrapper
+  +fill-parent()
+  text-align: center
+
+.MediaGallery-image
+  +fill-parent-max()
+
+  @media (min-width: $screen-sm-min)
+    +vertical-center()
+    border-radius: $border-radius-xlarge
+
+.MediaGallery-video
+  +fill-parent()
+  min-height: $media-gallery-video-min-height
+  border: none
+
+.MediaGallery-caption
+  text-align: center
+  margin: $grid-gutter-width / 2
+  font-weight: 300
+
+  @media (min-width: $screen-sm-min)
+    margin: 0
+    margin-top: 5px
+    font-size: $font-size-medium
+
+.MediaGallery-thumbnails
+  +make-row(0)
+  background: $primary
+  padding: $grid-gutter-width / 2
+  box-shadow: $box-shadow-in
+
+  @media (min-width: $screen-sm-min)
+    margin: $grid-gutter-width 0
+    border-radius: $border-radius-xlarge
+
+.MediaGallery-thumbnail
+  +make-xs-column($two-column-layout, 0)
+  +make-sm-column($five-column-layout, 0)
+  border: $border-spacing-sm
+  cursor: pointer
+
+  &:before
+    display: block
+    content: ""
+    width: 100%
+    padding-top: 100%
+
+  @media (min-width: $screen-sm-min)
+    +hover-grow(.4s, 1.1)
+    border: $border-spacing-lg
+
+.MediaGallery-thumbnail--selected
+  border: $border-thick-dark
+
+  @media (min-width: $screen-sm-min)
+    border: $border-spacing-md
+    border-radius: $border-radius-xxlarge
+
+    .MediaGallery-thumbnailImage
+        border: $border-thick-dark
+
+.MediaGallery-thumbnail--selected:hover
+  -webkit-transform: none
+  transform: none
+
+.MediaGallery-thumbnailImageWrapper
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+
+.MediaGallery-thumbnailImage
+  +fill-parent()
+
+  @media (min-width: $screen-sm-min)
+    border-radius: $border-radius-xlarge

@@ -1,0 +1,12 @@
+<div class="Recordings">
+  <div class="Recording" ng-repeat="song in songList">
+    <h3 class="Recording-title">{{ song.title }}</h3>
+    <div class="Recording-embedWrapper">
+      <iframe width="100%" height="166" scrolling="no" frameborder="no"
+              ng-src="{{ getSongUrl(song.url) | trustAsResourceUrl }}">
+      </iframe>
+    </div>
+    <div class="Recording-caption">{{ song.caption }}</div>
+  </div>
+</div>
+

@@ -1,0 +1,106 @@
+$contact-form-input-height: 34px
+$contact-form-line-height: 20px
+
+.Contact
+  padding-top: 0
+  width: 100%
+
+.Contact-hero
+  height: 200px
+  background-image: url("/images/home-hero.png")
+  background-color: #000
+  background-repeat: no-repeat
+  background-position: center -120px
+
+  @media (min-width: $screen-sm-min)
+    height: 320px
+    background-position: 100% 0
+
+.Contact-contents
+  +make-container()
+
+.Contact-title
+  margin: 30px 0
+
+%Contact-section
+  +make-sm-column($two-column-layout)
+
+.ContactInformation
+  @extend %Contact-section
+
+.ContactInformation-link
+  +clearfix()
+  display: block
+  color: $dark-gray
+  font-size: 20px
+  font-weight: 300
+  margin: $grid-gutter-width / 3 0
+
+  &:hover
+    text-decoration: none
+    color: $dark-gray
+
+.ContactInformation-icon
+  +square(30px)
+  float: left
+  background-size: cover
+
+  &.ContactInformation-icon--facebook
+    background-image: url("/images/icon-facebook.png")
+
+  &.ContactInformation-icon--email
+    background-image: url("/images/icon-email.png")
+
+  &.ContactInformation-icon--phone
+    background-image: url("/images/icon-phone.png")
+
+.ContactInformation-text
+  float: left
+  margin-left: 15px
+
+.ContactForm
+  @extend %Contact-section
+
+.ContactForm-section
+  +make-row()
+  margin-bottom: 15px
+
+.ContactForm-field
+  +make-xs-column($one-column-layout)
+  margin-top: 10px
+
+  @media (min-width: $screen-sm-min)
+    margin-top: 0
+
+.ContactForm-field--half
+  +make-sm-column($two-column-layout)
+
+.ContactForm-label
+  font-weight: 300
+
+.ContactForm-input
+  display: block
+  width: 100%
+  height: $contact-form-input-height
+  padding: $padding-base-vertical $padding-base-horizontal
+  line-height: $contact-form-line-height
+  border: $border
+  border-radius: $border-radius-base
+  +box-shadow(inset 0 1px 1px $light-gray)
+  +transition(border-color ease-in-out .15s, box-shadow ease-in-out .15s)
+
+  &:focus
+    border-color: $light-gray
+    outline: 0
+    +box-shadow(inset 0 1px 1px $lighter-gray, 0 0 8px $light-gray)
+
+.ContactForm-textarea
+  @extend .ContactForm-input
+  height: auto
+  resize: vertical
+
+.ContactForm-button
+  background-color: #fff;
+  border-color: #ccc;
+  float: right;
+  margin-right: 15px
