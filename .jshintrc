@@ -6,7 +6,7 @@
     "devel": true,
     "eqeqeq": true,
     "browser": true,
-    "es3": true,
+    "es5": true,
     "quotmark": "single",
     "shadow": "inner",
     "unused": true,

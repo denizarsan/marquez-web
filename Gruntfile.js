@@ -6,7 +6,7 @@ module.exports = function(grunt) {
 
         clean: {
             build: {
-                src: ['build/**/*.*']
+                src: ['build']
             }
         },
 
@@ -121,19 +121,17 @@ module.exports = function(grunt) {
             }
         },
 
-        connect: {
-            server: {
-                options: {
-                    hostname: '*',
-                    livereload: true,
-                    base: {
-                        path: 'build/',
-                        options: {
-                            index: 'index.html'
-                        }
-                    }
-                }
-            }
+        nodemon: {
+          dev: {
+            script: 'server.js'
+          }
+        },
+
+        concurrent: {
+          options: {
+            logConcurrentOutput: true
+          },
+          tasks: ['nodemon', 'watch']
         },
 
         watch: {
@@ -188,6 +186,6 @@ module.exports = function(grunt) {
     });
 
     require('load-grunt-tasks')(grunt);
-    grunt.registerTask('build-dev', ['clean', 'connect', 'ngtemplates', 'concat', 'sass', 'copy', 'watch']);
-    grunt.registerTask('build-prod', ['clean', 'connect', 'ngtemplates', 'uglify', 'sass', 'copy', 'watch']);
+    grunt.registerTask('build-dev', ['clean', 'ngtemplates', 'concat', 'sass', 'copy', 'concurrent']);
+    grunt.registerTask('build-prod', ['clean', 'ngtemplates', 'uglify', 'sass', 'copy', 'concurrent']);
 };

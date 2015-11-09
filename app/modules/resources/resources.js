@@ -5,7 +5,7 @@ angular.module('marquez-web')
         '$resource',
 
         function($resource) {
-            var apiPath = 'http://marquez-api.herokuapp.com';
+            var apiPath = '/api';
             return $resource(apiPath, {}, {
                 getSongs: {
                     method: 'GET',
