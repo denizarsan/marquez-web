@@ -19,5 +19,6 @@ angular.module('marquez-web', [
                  $urlRouterProvider) {
 
             $urlRouterProvider.otherwise('/');
+            $locationProvider.html5Mode(true);
         }
     ]);

@@ -1,7 +1,7 @@
 {
   "name": "marquez-web",
   "private": true,
-  "description": "The web client for the personal website of Çınar Atilla",
+  "description": "The personal website of Çınar Atilla",
   "version": "0.1.0",
   "scripts": {
     "start": "grunt build-dev",
