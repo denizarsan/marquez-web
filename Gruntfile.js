@@ -5,13 +5,12 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
 
         clean: {
-            build: {
-                src: ['build']
-            }
+            dev: { src: ['build'] },
+            prod: { src: ['dist'] }
         },
 
         concat: {
-            build: {
+            dev: {
                 files: [
                     {
                         dest: 'build/js/preload.js',
@@ -41,29 +40,35 @@ module.exports = function(grunt) {
         },
 
         sass: {
-            build: {
+            dev: {
                 files: {
                     'build/css/lib.css': ['app/styles/bootstrap-custom.sass'],
                     'build/css/app.css': ['app/styles/core.sass']
+                }
+            },
+            prod: {
+                files: {
+                    'dist/build/css/lib.css': ['app/styles/bootstrap-custom.sass'],
+                    'dist/build/css/app.css': ['app/styles/core.sass']
                 }
             }
         },
 
         uglify: {
-            build: {
+            prod: {
                 files: {
-                    'build/js/preload.js': [
+                    'dist/build/js/preload.js': [
                         'app/lib/modernizr*.js',
                         'app/lib/es5-shim.js'
                     ],
-                    'build/js/lib.js': [
+                    'dist/build/js/lib.js': [
                         'app/lib/angular.js',
                         'app/lib/*.js',
-                        'app/lib/**/*.js',
+                        'app/lib/*/*.js',
                         '!app/lib/modernizr*.js',
                         '!app/lib/es5-shim.js'
                     ],
-                    'build/js/app.js': [
+                    'dist/build/js/app.js': [
                         'app/app.js',
                         'app/modules/**/*.js',
                         'build/js/templates.js'
@@ -73,7 +78,7 @@ module.exports = function(grunt) {
         },
 
         copy: {
-            build: {
+            dev: {
                 files: [
                     {
                         expand: true,
@@ -96,12 +101,66 @@ module.exports = function(grunt) {
                         src: ['**']
                     }
                 ]
+            },
+            prod: {
+                files: [
+                    {
+                        expand: true,
+                        dest: 'dist',
+                        src: ['server.js']
+                    },
+                    {
+                        expand: true,
+                        dest: 'dist/models',
+                        cwd: 'models/',
+                        src: ['**']
+                    },
+                    {
+                        expand: true,
+                        dest: 'dist/build/',
+                        cwd: 'app/',
+                        src: [
+                            'index.html',
+                            'robots.txt'
+                        ]
+                    },
+                    {
+                        expand: true,
+                        dest: 'dist/build/images/',
+                        cwd: 'app/images/',
+                        src: ['**']
+                    },{
+                        expand: true,
+                        dest: 'dist/build/fonts/',
+                        cwd: 'app/lib/bootstrap-sass/fonts/',
+                        src: ['**']
+                    }
+                ]
             }
         },
 
         ngtemplates: {
-            build: {
+            dev: {
                 dest: 'build/js/templates.js',
+                cwd: 'app/modules/',
+                src: '**/*.html',
+                options: {
+                    module: 'marquez-web',
+                    prefix: '/',
+                    htmlmin: {
+                        collapseBooleanAttributes: true,
+                        collapseWhitespace: true,
+                        removeAttributeQuotes: true,
+                        removeComments: true,
+                        removeEmptyAttributes: true,
+                        removeRedundantAttributes: true,
+                        removeScriptTypeAttributes: true,
+                        removeStyleLinkTypeAttributes: true
+                    }
+                }
+            },
+            prod: {
+                dest: 'dist/build/js/templates.js',
                 cwd: 'app/modules/',
                 src: '**/*.html',
                 options: {
@@ -121,10 +180,28 @@ module.exports = function(grunt) {
             }
         },
 
-        nodemon: {
-          dev: {
-            script: 'server.js'
-          }
+        'file-creator': {
+            prod: {
+                'dist/.gitignore': function(fs, fd, done) {
+                    fs.writeSync(fd, '.DS_Store\nnode_modules\n');
+                    done();
+                },
+                'dist/package.json': function(fs, fd, done) {
+                    fs.writeSync(fd, '{' +
+                                       '\n\t"name": "marquez-web",' +
+                                       '\n\t"description": "The personal website of Çınar Atilla",' +
+                                       '\n\t"scripts": {' +
+                                         '\n\t\t"start": "node server.js"' +
+                                       '\n\t},' +
+                                       '\n\t"dependencies": {' +
+                                         '\n\t\t"express": "~4.5.1",' +
+                                         '\n\t\t"mongoose": "^4.2.4"' +
+                                       '\n\t}' +
+                                     '\n}');
+                    done();
+                },
+
+            }
         },
 
         concurrent: {
@@ -132,6 +209,12 @@ module.exports = function(grunt) {
             logConcurrentOutput: true
           },
           tasks: ['nodemon', 'watch']
+        },
+
+        nodemon: {
+          dev: {
+            script: 'server.js'
+          }
         },
 
         watch: {
@@ -153,7 +236,7 @@ module.exports = function(grunt) {
                     'app/**/*.html'
                 ],
                 tasks: [
-                    'ngtemplates:build',
+                    'ngtemplates:dev',
                     'concat'
                 ],
                 options: {
@@ -166,7 +249,7 @@ module.exports = function(grunt) {
                     'app/styles/*.sass',
                     'app/lib/**/*.sass'
                 ],
-                tasks: ['sass'],
+                tasks: ['sass:dev'],
                 options: {
                     livereload: true,
                     interval: 500
@@ -176,7 +259,7 @@ module.exports = function(grunt) {
                 files: [
                     'app/images/**'
                 ],
-                tasks: ['copy'],
+                tasks: ['copy:dev'],
                 options: {
                     livereload: true,
                     interval: 500
@@ -186,6 +269,6 @@ module.exports = function(grunt) {
     });
 
     require('load-grunt-tasks')(grunt);
-    grunt.registerTask('build-dev', ['clean', 'ngtemplates', 'concat', 'sass', 'copy', 'concurrent']);
-    grunt.registerTask('build-prod', ['clean', 'ngtemplates', 'uglify', 'sass', 'copy', 'concurrent']);
+    grunt.registerTask('build-dev', ['clean:dev', 'ngtemplates:dev', 'concat', 'sass:dev', 'copy:dev', 'concurrent']);
+    grunt.registerTask('build-prod', ['clean:prod', 'file-creator','ngtemplates:prod', 'uglify', 'sass:prod', 'copy:prod']);
 };

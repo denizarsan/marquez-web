@@ -13,10 +13,6 @@ var port = process.env.PORT || 8080;
 
 app.use(express.static(__dirname + '/build'));
 
-app.get('/', function(req, res) {
-  res.sendfile('./build/index.html');
-});
-
 // Add endpoints
 app.get('/api/images', Images.getImages);
 app.get('/api/songs', Songs.getSongs);
@@ -24,5 +20,10 @@ app.get('/api/videos', Videos.getVideos);
 app.post('/api/images/add', Images.addImage);
 app.post('/api/songs/add', Songs.addSong);
 app.post('/api/videos/add', Videos.addVideo);
+
+// Serve web client
+app.get('*', function(req, res) {
+  res.sendfile('./build/index.html');
+});
 
 app.listen(port);
