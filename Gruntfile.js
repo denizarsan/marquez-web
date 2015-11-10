@@ -71,7 +71,7 @@ module.exports = function(grunt) {
                     'dist/build/js/app.js': [
                         'client/app.js',
                         'client/modules/**/*.js',
-                        'build/js/templates.js'
+                        'dist/build/js/templates.js'
                     ]
                 }
             }
@@ -264,6 +264,18 @@ module.exports = function(grunt) {
     });
 
     require('load-grunt-tasks')(grunt);
-    grunt.registerTask('build-dev', ['clean:dev', 'ngtemplates:dev', 'concat', 'sass:dev', 'copy:dev', 'concurrent']);
-    grunt.registerTask('build-prod', ['clean:prod', 'file-creator','ngtemplates:prod', 'uglify', 'sass:prod', 'copy:prod']);
+
+    grunt.registerTask('build-dev', ['clean:dev',
+                                     'ngtemplates:dev',
+                                     'concat',
+                                     'sass:dev',
+                                     'copy:dev',
+                                     'concurrent']);
+
+    grunt.registerTask('build-prod', ['clean:prod',
+                                      'file-creator',
+                                      'ngtemplates:prod',
+                                      'uglify',
+                                      'sass:prod',
+                                      'copy:prod']);
 };

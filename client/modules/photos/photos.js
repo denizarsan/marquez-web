@@ -18,13 +18,13 @@ angular.module('marquez-web.photos', [])
 
             $scope.mediaList = [];
 
-            Resources.getImages().$promise.then(
-                function getImagesSuccess(data) {
-                    _.each(data.images, function(image) {
+            Resources.getPhotos().$promise.then(
+                function getPhotosSuccess(data) {
+                    _.each(data.photos, function(photo) {
                         $scope.mediaList.push({
-                            url: image.url,
-                            caption: image.caption,
-                            thumbnailUrl: image.url
+                            url: photo.url,
+                            caption: photo.caption,
+                            thumbnailUrl: photo.url
                         });
                     });
                 }

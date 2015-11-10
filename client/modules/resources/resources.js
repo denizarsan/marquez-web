@@ -7,17 +7,17 @@ angular.module('marquez-web')
         function($resource) {
             var apiPath = '/api';
             return $resource(apiPath, {}, {
-                getSongs: {
+                getRecordings: {
                     method: 'GET',
-                    url: apiPath + '/songs'
+                    url: apiPath + '/recordings'
                 },
-                getVideos: {
+                getPerformances: {
                     method: 'GET',
-                    url: apiPath + '/videos'
+                    url: apiPath + '/performances'
                 },
-                getImages: {
+                getPhotos: {
                     method: 'GET',
-                    url: apiPath + '/images'
+                    url: apiPath + '/photos'
                 }
             });
         }

@@ -18,13 +18,13 @@ angular.module('marquez-web.performances', [])
 
             $scope.mediaList = [];
 
-            Resources.getVideos().$promise.then(
-                function getVideosSuccess(data) {
-                    _.each(data.videos, function(video) {
+            Resources.getPerformances().$promise.then(
+                function getPerformancesSuccess(data) {
+                    _.each(data.performances, function(performance) {
                         $scope.mediaList.push({
-                            url: 'http://www.youtube.com/embed/' + video.id,
-                            caption: video.caption,
-                            thumbnailUrl: 'http://img.youtube.com/vi/' + video.id + '/hqdefault.jpg'
+                            url: 'http://www.youtube.com/embed/' + performance.id,
+                            caption: performance.caption,
+                            thumbnailUrl: 'http://img.youtube.com/vi/' + performance.id + '/hqdefault.jpg'
                         });
                     });
                 }

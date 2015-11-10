@@ -16,7 +16,7 @@ angular.module('marquez-web.recordings', [])
         function($scope,
                  Resources) {
 
-            $scope.getSongUrl = function(embedUrl) {
+            $scope.getRecordingUrl = function(embedUrl) {
                 var staticUrl = 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/',
                     options = '&color=333&show_playcount=false&show_comments=false&show_user=false&show_title=false',
                     trackIdRegex = /api\.soundcloud\.com\/tracks\/(\d*)/,
@@ -25,14 +25,14 @@ angular.module('marquez-web.recordings', [])
                 return staticUrl + trackId + options;
             };
 
-            $scope.songList = [];
-            Resources.getSongs().$promise.then(
-                function getSongsSuccess(data) {
-                    _.each(data.songs, function(song) {
-                        $scope.songList.push({
-                            url: $scope.getSongUrl(song.url),
-                            title: song.title,
-                            caption: song.caption
+            $scope.recordingList = [];
+            Resources.getRecordings().$promise.then(
+                function getRecordingsSuccess(data) {
+                    _.each(data.recordings, function(recording) {
+                        $scope.recordingList.push({
+                            url: $scope.getRecordingUrl(recording.url),
+                            title: recording.title,
+                            caption: recording.caption
                         });
                     });
                 }
