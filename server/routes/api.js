@@ -13,8 +13,8 @@ router.get('/performances', function(req, res) {
 router.post('/performance', function(req, res) {
     var performance = new Performance();
 
-    performance.id = req.params.id;
-    performance.caption = req.params.caption;
+    performance.id = req.body.id;
+    performance.caption = req.body.caption;
 
     performance.save(function () {
         res.send(req.body);
@@ -30,8 +30,8 @@ router.get('/photos', function(req, res) {
 router.post('/photo', function(req, res) {
     var photo = new Photo();
 
-    photo.url = req.params.url;
-    photo.caption = req.params.caption;
+    photo.url = req.body.url;
+    photo.caption = req.body.caption;
 
     photo.save(function () {
         res.send(req.body);
@@ -47,9 +47,9 @@ router.get('/recordings', function(req, res) {
 router.post('/recording', function(req, res) {
     var recording = new Recording();
 
-    recording.url = req.params.url;
-    recording.title = req.params.title;
-    recording.caption = req.params.caption;
+    recording.url = req.body.url;
+    recording.title = req.body.title;
+    recording.caption = req.body.caption;
 
     recording.save(function () {
         res.send(req.body);

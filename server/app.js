@@ -9,8 +9,8 @@ var app = express(),
 
 mongoose.connect(dbURI);
 app.use(express.static(path.join(__dirname, '../build')));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/api', api);
 

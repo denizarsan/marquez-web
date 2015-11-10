@@ -11,14 +11,26 @@ angular.module('marquez-web')
                     method: 'GET',
                     url: apiPath + '/recordings'
                 },
+                addRecording: {
+                    method: 'POST',
+                    url: apiPath + '/recording'
+                },
                 getPerformances: {
                     method: 'GET',
                     url: apiPath + '/performances'
                 },
+                addPerformance: {
+                    method: 'POST',
+                    url: apiPath + '/performance'
+                },
                 getPhotos: {
                     method: 'GET',
                     url: apiPath + '/photos'
-                }
+                },
+                addPhoto: {
+                    method: 'POST',
+                    url: apiPath + '/photo'
+                },
             });
         }
     ]);
