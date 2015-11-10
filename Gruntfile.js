@@ -15,23 +15,23 @@ module.exports = function(grunt) {
                     {
                         dest: 'build/js/preload.js',
                         src: [
-                            'app/lib/modernizr*.js',
-                            'app/lib/es5-shim.js'
+                            'client/lib/modernizr*.js',
+                            'client/lib/es5-shim.js'
                         ]
                     }, {
                         dest: 'build/js/lib.js',
                         src: [
-                            'app/lib/angular.js',
-                            'app/lib/*.js',
-                            'app/lib/*/*.js',
-                            '!app/lib/modernizr*.js',
-                            '!app/lib/es5-shim.js'
+                            'client/lib/angular.js',
+                            'client/lib/*.js',
+                            'client/lib/*/*.js',
+                            '!client/lib/modernizr*.js',
+                            '!client/lib/es5-shim.js'
                         ]
                     }, {
                         dest: 'build/js/app.js',
                         src: [
-                            'app/app.js',
-                            'app/modules/**/*.js',
+                            'client/app.js',
+                            'client/modules/**/*.js',
                             'build/js/templates.js'
                         ]
                     }
@@ -42,14 +42,14 @@ module.exports = function(grunt) {
         sass: {
             dev: {
                 files: {
-                    'build/css/lib.css': ['app/styles/bootstrap-custom.sass'],
-                    'build/css/app.css': ['app/styles/core.sass']
+                    'build/css/lib.css': ['client/styles/bootstrap-custom.sass'],
+                    'build/css/app.css': ['client/styles/core.sass']
                 }
             },
             prod: {
                 files: {
-                    'dist/build/css/lib.css': ['app/styles/bootstrap-custom.sass'],
-                    'dist/build/css/app.css': ['app/styles/core.sass']
+                    'dist/build/css/lib.css': ['client/styles/bootstrap-custom.sass'],
+                    'dist/build/css/app.css': ['client/styles/core.sass']
                 }
             }
         },
@@ -58,19 +58,19 @@ module.exports = function(grunt) {
             prod: {
                 files: {
                     'dist/build/js/preload.js': [
-                        'app/lib/modernizr*.js',
-                        'app/lib/es5-shim.js'
+                        'client/lib/modernizr*.js',
+                        'client/lib/es5-shim.js'
                     ],
                     'dist/build/js/lib.js': [
-                        'app/lib/angular.js',
-                        'app/lib/*.js',
-                        'app/lib/*/*.js',
-                        '!app/lib/modernizr*.js',
-                        '!app/lib/es5-shim.js'
+                        'client/lib/angular.js',
+                        'client/lib/*.js',
+                        'client/lib/*/*.js',
+                        '!client/lib/modernizr*.js',
+                        '!client/lib/es5-shim.js'
                     ],
                     'dist/build/js/app.js': [
-                        'app/app.js',
-                        'app/modules/**/*.js',
+                        'client/app.js',
+                        'client/modules/**/*.js',
                         'build/js/templates.js'
                     ]
                 }
@@ -83,7 +83,7 @@ module.exports = function(grunt) {
                     {
                         expand: true,
                         dest: 'build/',
-                        cwd: 'app/',
+                        cwd: 'client/',
                         src: [
                             'index.html',
                             'robots.txt'
@@ -92,12 +92,12 @@ module.exports = function(grunt) {
                     {
                         expand: true,
                         dest: 'build/images/',
-                        cwd: 'app/images/',
+                        cwd: 'client/images/',
                         src: ['**']
                     },{
                         expand: true,
                         dest: 'build/fonts/',
-                        cwd: 'app/lib/bootstrap-sass/fonts/',
+                        cwd: 'client/lib/bootstrap-sass/fonts/',
                         src: ['**']
                     }
                 ]
@@ -106,19 +106,14 @@ module.exports = function(grunt) {
                 files: [
                     {
                         expand: true,
-                        dest: 'dist',
-                        src: ['server.js']
-                    },
-                    {
-                        expand: true,
-                        dest: 'dist/models',
-                        cwd: 'models/',
+                        dest: 'dist/server',
+                        cwd: 'server',
                         src: ['**']
                     },
                     {
                         expand: true,
                         dest: 'dist/build/',
-                        cwd: 'app/',
+                        cwd: 'client/',
                         src: [
                             'index.html',
                             'robots.txt'
@@ -127,12 +122,12 @@ module.exports = function(grunt) {
                     {
                         expand: true,
                         dest: 'dist/build/images/',
-                        cwd: 'app/images/',
+                        cwd: 'client/images/',
                         src: ['**']
                     },{
                         expand: true,
                         dest: 'dist/build/fonts/',
-                        cwd: 'app/lib/bootstrap-sass/fonts/',
+                        cwd: 'client/lib/bootstrap-sass/fonts/',
                         src: ['**']
                     }
                 ]
@@ -142,7 +137,7 @@ module.exports = function(grunt) {
         ngtemplates: {
             dev: {
                 dest: 'build/js/templates.js',
-                cwd: 'app/modules/',
+                cwd: 'client/modules/',
                 src: '**/*.html',
                 options: {
                     module: 'marquez-web',
@@ -161,7 +156,7 @@ module.exports = function(grunt) {
             },
             prod: {
                 dest: 'dist/build/js/templates.js',
-                cwd: 'app/modules/',
+                cwd: 'client/modules/',
                 src: '**/*.html',
                 options: {
                     module: 'marquez-web',
@@ -191,16 +186,16 @@ module.exports = function(grunt) {
                                        '\n\t"name": "marquez-web",' +
                                        '\n\t"description": "The personal website of Çınar Atilla",' +
                                        '\n\t"scripts": {' +
-                                         '\n\t\t"start": "node server.js"' +
+                                         '\n\t\t"start": "node server/server.js"' +
                                        '\n\t},' +
                                        '\n\t"dependencies": {' +
-                                         '\n\t\t"express": "~4.5.1",' +
-                                         '\n\t\t"mongoose": "^4.2.4"' +
+                                         '\n\t\t"body-parser": "^1.14.1",' +
+                                         '\n\t\t"express": "~4.13.3",' +
+                                         '\n\t\t"mongoose": "^4.2.5"' +
                                        '\n\t}' +
                                      '\n}');
                     done();
-                },
-
+                }
             }
         },
 
@@ -213,16 +208,16 @@ module.exports = function(grunt) {
 
         nodemon: {
           dev: {
-            script: 'server.js'
+            script: 'server/server.js'
           }
         },
 
         watch: {
             js: {
                 files: [
-                    'app/app.js',
-                    'app/modules/**/*js',
-                    'app/lib/**/*js'
+                    'client/app.js',
+                    'client/modules/**/*js',
+                    'client/lib/**/*js'
                 ],
                 tasks: ['concat'],
                 options: {
@@ -232,8 +227,8 @@ module.exports = function(grunt) {
             },
             html: {
                 files: [
-                    'app/index.html',
-                    'app/**/*.html'
+                    'client/index.html',
+                    'client/**/*.html'
                 ],
                 tasks: [
                     'ngtemplates:dev',
@@ -246,8 +241,8 @@ module.exports = function(grunt) {
             },
             sass: {
                 files: [
-                    'app/styles/*.sass',
-                    'app/lib/**/*.sass'
+                    'client/styles/*.sass',
+                    'client/lib/**/*.sass'
                 ],
                 tasks: ['sass:dev'],
                 options: {
@@ -257,7 +252,7 @@ module.exports = function(grunt) {
             },
             images: {
                 files: [
-                    'app/images/**'
+                    'client/images/**'
                 ],
                 tasks: ['copy:dev'],
                 options: {
