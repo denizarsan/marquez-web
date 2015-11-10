@@ -1,8 +1,27 @@
 var express = require('express'),
     router = express.Router(),
+    Message = require('../models/message'),
     Performance = require('../models/performance'),
     Photo = require('../models/photo'),
     Recording = require('../models/recording');
+
+router.get('/messages', function(req, res) {
+    Message.find(function (err, messages) {
+        res.send({ messages: messages });
+    });
+});
+
+router.post('/message', function(req, res) {
+    var message = new Message();
+
+    message.name = req.body.name;
+    message.email = req.body.email;
+    message.body = req.body.body;
+
+    message.save(function () {
+        res.send(req.body);
+    });
+});
 
 router.get('/performances', function(req, res) {
     Performance.find(function (err, performances) {

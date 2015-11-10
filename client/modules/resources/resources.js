@@ -31,6 +31,14 @@ angular.module('marquez-web')
                     method: 'POST',
                     url: apiPath + '/photo'
                 },
+                getMessages: {
+                    method: 'GET',
+                    url: apiPath + '/messages'
+                },
+                sendMessage: {
+                    method: 'POST',
+                    url: apiPath + '/message'
+                }
             });
         }
     ]);

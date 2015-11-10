@@ -61,6 +61,23 @@ $contact-form-line-height: 20px
 .ContactForm
   @extend %Contact-section
 
+%ContactForm-message
+  padding: $padding-large-vertical $padding-large-horizontal
+  border: $border-spacing-xs
+  border-radius: $border-radius-xlarge
+  font-size: $font-size-medium
+  margin-bottom: 15px
+
+.ContactForm-successMessage
+  @extend %ContactForm-message
+  color: $green
+  border-color: $green
+
+.ContactForm-errorMessage
+  @extend %ContactForm-message
+  color: $red
+  border-color: $red
+
 .ContactForm-section
   +make-row()
   margin-bottom: 15px

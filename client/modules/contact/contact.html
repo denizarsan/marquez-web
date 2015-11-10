@@ -21,32 +21,42 @@
       </a>
     </div>
 
-    <form class="ContactForm">
+    <form class="ContactForm" ng-submit="sendMessage()">
 
       <h3 class="Contact-title">Send a Message</h3>
 
-      <div class="ContactForm-section">
-        <div class="ContactForm-field ContactForm-field--half">
-          <label class="ContactForm-label" for="name">Name</label>
-          <input type="text" class="ContactForm-input" id="name" placeholder="Name">
+      <div class="ContactForm-case" ng-if="messageSent">
+        <div class="ContactForm-successMessage" ng-if="messageSuccess">
+          Thank you, I have received your message. I will contact you as soon as I can.
         </div>
-        <div class="ContactForm-field ContactForm-field--half">
-          <label class="ContactForm-label" for="email">Email</label>
-          <input type="email" class="ContactForm-input" id="email" placeholder="Email">
+        <div class="ContactForm-errorMessage" ng-if="!messageSuccess">
+          Uh oh! Something went wrong. Please try again.
         </div>
       </div>
 
-      <div class="ContactForm-section">
-        <div class="ContactForm-field">
-          <label class="ContactForm-label" for="message">Message</label>
-          <textarea class="ContactForm-textarea" name="message" rows="5"></textarea>
+      <div class="ContactForm-case" ng-if="!messageSuccess">
+        <div class="ContactForm-section">
+          <div class="ContactForm-field ContactForm-field--half">
+            <label class="ContactForm-label" for="name">Name</label>
+            <input type="text" class="ContactForm-input" id="name" placeholder="Name" ng-model="message.name" required>
+          </div>
+          <div class="ContactForm-field ContactForm-field--half">
+            <label class="ContactForm-label" for="email">Email</label>
+            <input type="email" class="ContactForm-input" id="email" placeholder="Email" ng-model="message.email" required>
+          </div>
+        </div>
+
+        <div class="ContactForm-section">
+          <div class="ContactForm-field">
+            <label class="ContactForm-label" for="message">Message</label>
+            <textarea class="ContactForm-textarea" name="message" rows="5" ng-model="message.body" required></textarea>
+          </div>
+        </div>
+
+        <div class="ContactForm-section">
+          <button type="submit" class="ContactForm-button btn">Submit</button>
         </div>
       </div>
-
-      <div class="ContactForm-section">
-        <button type="submit" class="ContactForm-button btn">Submit</button>
-      </div>
-
     </form>
   </div>
 
