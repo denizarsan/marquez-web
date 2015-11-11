@@ -4,8 +4,8 @@
   "description": "The personal website of Çınar Atilla",
   "version": "0.1.0",
   "scripts": {
-    "start": "grunt build-dev",
-    "build-prod": "grunt build-prod"
+    "start": "./node_modules/.bin/grunt build-dev",
+    "build-prod": "./node_modules/.bin/grunt build-prod"
   },
   "dependencies": {
     "body-parser": "^1.14.1",
@@ -15,6 +15,7 @@
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-angular-templates": "^0.5.7",
+    "grunt-cli": "^0.1.13",
     "grunt-concurrent": "^2.0.4",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-concat": "^0.5.1",
