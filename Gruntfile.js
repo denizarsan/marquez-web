@@ -23,7 +23,6 @@ module.exports = function(grunt) {
                         src: [
                             'client/lib/angular.js',
                             'client/lib/*.js',
-                            'client/lib/*/*.js',
                             '!client/lib/modernizr*.js',
                             '!client/lib/es5-shim.js'
                         ]
@@ -64,7 +63,6 @@ module.exports = function(grunt) {
                     'dist/build/js/lib.js': [
                         'client/lib/angular.js',
                         'client/lib/*.js',
-                        'client/lib/*/*.js',
                         '!client/lib/modernizr*.js',
                         '!client/lib/es5-shim.js'
                     ],
