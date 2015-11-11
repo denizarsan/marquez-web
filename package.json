@@ -4,7 +4,10 @@
   "description": "The personal website of Çınar Atilla",
   "version": "0.1.0",
   "scripts": {
+    "prestart": "mongod --fork --logpath logs/dblogs.log",
     "start": "./node_modules/.bin/grunt build-dev",
+    "stop": "mongo admin --eval 'db.shutdownServer()' > logs/dblogs.log",
+    "poststop": "rm logs/*",
     "build-prod": "./node_modules/.bin/grunt build-prod"
   },
   "dependencies": {
