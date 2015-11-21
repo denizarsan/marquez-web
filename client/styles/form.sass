@@ -1,0 +1,63 @@
+$form-input-height: 34px
+$form-line-height: 20px
+
+%Form-message
+  padding: $padding-large-vertical $padding-large-horizontal
+  border: $border-spacing-xs
+  border-radius: $border-radius-xlarge
+  font-size: $font-size-medium
+  margin-bottom: 15px
+
+.Form-successMessage
+  @extend %Form-message
+  color: $green
+  border-color: $green
+
+.Form-errorMessage
+  @extend %Form-message
+  color: $red
+  border-color: $red
+
+.Form-section
+  +make-row()
+  margin-bottom: 15px
+
+.Form-field
+  +make-xs-column($one-column-layout)
+  margin-top: 10px
+
+  @media (min-width: $screen-sm-min)
+    margin-top: 0
+
+.Form-field--half
+  +make-sm-column($two-column-layout)
+
+.Form-label
+  font-weight: 300
+
+.Form-input
+  display: block
+  width: 100%
+  height: $form-input-height
+  padding: $padding-base-vertical $padding-base-horizontal
+  line-height: $form-line-height
+  border: $border
+  border-radius: $border-radius-base
+  +box-shadow(inset 0 1px 1px $light-gray)
+  +transition(border-color ease-in-out .15s, box-shadow ease-in-out .15s)
+
+  &:focus
+    border-color: $light-gray
+    outline: 0
+    +box-shadow(inset 0 1px 1px $lighter-gray, 0 0 8px $light-gray)
+
+.Form-textarea
+  @extend .Form-input
+  height: auto
+  resize: vertical
+
+.Form-button
+  background-color: #fff;
+  border-color: #ccc;
+  float: right;
+  margin-right: 15px

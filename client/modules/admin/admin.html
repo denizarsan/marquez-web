@@ -1,0 +1,40 @@
+<div class="Admin">
+
+  <h2 class="Admin-title">Admin Dashboard</h2>
+
+  <div class="Admin-login" ng-if="!user">
+
+    <form class="Form" ng-submit="login()">
+
+      <div class="Form-errorMessage" ng-if="error">
+        {{ error }}
+      </div>
+
+      <div class="Form-section">
+        <div class="Form-field">
+          <label class="Form-label" for="name">Username</label>
+          <input type="text" class="Form-input" id="username" placeholder="Username" ng-model="loginForm.username" required>
+        </div>
+      </div>
+
+      <div class="Form-section">
+        <div class="Form-field">
+          <label class="Form-label" for="email">Password</label>
+          <input type="password" class="Form-input" id="password" placeholder="Password" ng-model="loginForm.password" required>
+        </div>
+      </div>
+
+      <div class="Form-section">
+        <button type="submit" class="Form-button btn">Login</button>
+      </div>
+
+    </form>
+
+  </div>
+
+  <div class="Admin-dashboard" ng-if="user">
+    Hello {{ user.username }}!<br>
+    Click <a ng-click="logout()">here</a> to logout.
+  </div>
+
+</div>

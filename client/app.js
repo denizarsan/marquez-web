@@ -2,6 +2,7 @@ angular.module('marquez-web', [
 
     'ngResource',
     'ui.router',
+    'marquez-web.admin',
     'marquez-web.components',
     'marquez-web.contact',
     'marquez-web.header',
