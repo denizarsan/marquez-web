@@ -1,4 +1,4 @@
-angular.module('marquez-web')
+angular.module('resources.auth', [])
 
     .factory('AuthAPI', [
 

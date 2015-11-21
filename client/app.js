@@ -9,7 +9,8 @@ angular.module('marquez-web', [
     'marquez-web.home',
     'marquez-web.performances',
     'marquez-web.photos',
-    'marquez-web.recordings'])
+    'marquez-web.recordings',
+    'marquez-web.resources'])
 
     .config([
 

@@ -11,10 +11,10 @@ angular.module('marquez-web.recordings', [])
     .controller('RecordingsController', [
 
         '$scope',
-        'Resources',
+        'Recordings',
 
         function($scope,
-                 Resources) {
+                 Recordings) {
 
             $scope.getRecordingUrl = function(embedUrl) {
                 var staticUrl = 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/',
@@ -26,17 +26,18 @@ angular.module('marquez-web.recordings', [])
             };
 
             $scope.recordingList = [];
-            Resources.getRecordings().$promise.then(
-                function getRecordingsSuccess(data) {
-                    _.each(data.recordings, function(recording) {
-                        $scope.recordingList.push({
-                            url: $scope.getRecordingUrl(recording.url),
-                            title: recording.title,
-                            caption: recording.caption
+            Recordings.list()
+                .then(
+                    function listRecordingsSuccess(data) {
+                        _.each(data.recordings, function(recording) {
+                            $scope.recordingList.push({
+                                url: $scope.getRecordingUrl(recording.url),
+                                title: recording.title,
+                                caption: recording.caption
+                            });
                         });
-                    });
-                }
-            );
+                    }
+                );
 
         }
     ]);

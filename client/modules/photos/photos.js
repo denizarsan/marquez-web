@@ -11,24 +11,25 @@ angular.module('marquez-web.photos', [])
     .controller('PhotosController', [
 
         '$scope',
-        'Resources',
+        'Photos',
 
         function($scope,
-                 Resources) {
+                 Photos) {
 
             $scope.mediaList = [];
 
-            Resources.getPhotos().$promise.then(
-                function getPhotosSuccess(data) {
-                    _.each(data.photos, function(photo) {
-                        $scope.mediaList.push({
-                            url: photo.url,
-                            caption: photo.caption,
-                            thumbnailUrl: photo.url
+            Photos.list()
+                .then(
+                    function listPhotosSuccess(data) {
+                        _.each(data.photos, function(photo) {
+                            $scope.mediaList.push({
+                                url: photo.url,
+                                caption: photo.caption,
+                                thumbnailUrl: photo.url
+                            });
                         });
-                    });
-                }
-            );
+                    }
+                );
 
         }
     ]);

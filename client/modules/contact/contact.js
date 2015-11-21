@@ -11,10 +11,10 @@ angular.module('marquez-web.contact', [])
     .controller('ContactController', [
 
         '$scope',
-        'Resources',
+        'Messages',
 
         function($scope,
-                 Resources) {
+                 Messages) {
 
             $scope.messageSent = false;
             $scope.messageSuccess = false;
@@ -22,19 +22,20 @@ angular.module('marquez-web.contact', [])
             $scope.message = {};
 
             $scope.sendMessage = function() {
-                Resources.sendMessage($scope.message).$promise.then(
-                    function sendMessageSuccess() {
-                        $scope.messageSuccess = true;
-                    }
-                )['catch'](
-                    function sendMessageError() {
-                        $scope.messageSuccess = false;
-                    }
-                )['finally'](
-                    function sendMessageFinally() {
-                        $scope.messageSent = true;
-                    }
-                );
+                Messages.send($scope.message)
+                    .then(
+                        function sendMessageSuccess() {
+                            $scope.messageSuccess = true;
+                        }
+                    ).catch(
+                        function sendMessageError() {
+                            $scope.messageSuccess = false;
+                        }
+                    ).finally(
+                        function sendMessageFinally() {
+                            $scope.messageSent = true;
+                        }
+                    );
             };
 
     }]);
