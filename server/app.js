@@ -1,26 +1,33 @@
-var express = require('express'),
-    bodyParser = require('body-parser'),
-    mongoose = require('mongoose'),
-    passport = require('passport'),
-    localStrategy = require('passport-local' ).Strategy,
-    path = require('path');
+var express = require('express');
+var session = require('express-session');
+var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var passport = require('passport');
+var localStrategy = require('passport-local' ).Strategy;
+var path = require('path');
 
 var app = express(),
     api = require('./routes/api'),
-    Account = require('./models/user'),
+    User = require('./models/user'),
     dbURI = process.env.MONGOLAB_URI || 'mongodb://localhost/marquez-db';
 
+// Connect to the database
 mongoose.connect(dbURI);
+
+// Configure express
 app.use(express.static(path.join(__dirname, '../build')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(session({ secret: 'marquez', resave: true, saveUninitialized: false }));
 
+// Initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(new localStrategy(Account.authenticate()));
-passport.serializeUser(Account.serializeUser());
-passport.deserializeUser(Account.deserializeUser());
+passport.use(new localStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
+// Register routes
 app.use('/api', api);
 
 app.get('*', function(req, res) {

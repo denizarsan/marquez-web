@@ -1,8 +1,6 @@
-var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+var mongoose = require('mongoose');
 
-
-var Message = new Schema({
+var Message = new mongoose.Schema({
     name: String,
     email: String,
     body: String,

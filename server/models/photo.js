@@ -1,10 +1,9 @@
-var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+var mongoose = require('mongoose');
 
-
-var Photo = new Schema({
+var Photo = new mongoose.Schema({
     url: String,
-    caption: String
+    caption: String,
+    isPrivate: { type: Boolean, default: false }
 });
 
 module.exports = mongoose.model('photos', Photo);
