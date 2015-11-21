@@ -27,9 +27,10 @@ passport.use(new localStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-// Register routes
+// Register api routes
 app.use('/api', api);
 
+// Delegate everything else to the client
 app.get('*', function(req, res) {
     res.sendFile(path.join(__dirname, '../build', 'index.html'));
 });

@@ -21,61 +21,67 @@ router.use('/admin', function(req, res, next) {
 });
 
 // Add a new user
-router.post('/admin/user', function(req, res) {
-    User.register(new User({ username: req.body.username }), req.body.password, function() {
+router.post('/admin/user', function(req, res, next) {
+    User.register(new User({ username: req.body.username }), req.body.password, function(err) {
+        if (err) { return next(err); }
         res.sendStatus(200);
     });
 });
 
 // Get all registered users
-router.get('/admin/users', function(req, res) {
+router.get('/admin/users', function(req, res, next) {
     User.find(function(err, users) {
+        if (err) { return next(err); }
         res.status(200).json({ users: users });
     });
 });
 
 // Add a new performance
-router.post('/admin/performance', function(req, res) {
+router.post('/admin/performance', function(req, res, next) {
     var performance = new Performance();
 
     performance.id = req.body.id;
     performance.caption = req.body.caption;
     performance.isPrivate = req.body.isPrivate;
 
-    performance.save(function () {
+    performance.save(function(err) {
+        if (err) { return next(err); }
         res.sendStatus(200);
     });
 });
 
 // Get all performances
-router.get('/admin/performances', function(req, res) {
+router.get('/admin/performances', function(req, res, next) {
     Performance.find(function(err, performances) {
+        if (err) { return next(err); }
         res.status(200).json({ performances: performances });
     });
 });
 
 // Add a new photo
-router.post('/admin/photo', function(req, res) {
+router.post('/admin/photo', function(req, res, next) {
     var photo = new Photo();
 
     photo.url = req.body.url;
     photo.caption = req.body.caption;
     photo.isPrivate = req.body.isPrivate;
 
-    photo.save(function () {
+    photo.save(function(err) {
+        if (err) { return next(err); }
         res.sendStatus(200);
     });
 });
 
 // Get all photos
-router.get('/admin/photos', function(req, res) {
+router.get('/admin/photos', function(req, res, next) {
     Photo.find(function(err, photos) {
+        if (err) { return next(err); }
         res.status(200).json({ photos: photos });
     });
 });
 
 // Add a new recording
-router.post('/admin/recording', function(req, res) {
+router.post('/admin/recording', function(req, res, next) {
     var recording = new Recording();
 
     recording.url = req.body.url;
@@ -83,21 +89,24 @@ router.post('/admin/recording', function(req, res) {
     recording.caption = req.body.caption;
     recording.isPrivate = req.body.isPrivate;
 
-    recording.save(function () {
+    recording.save(function(err) {
+        if (err) { return next(err); }
         res.sendStatus(200);
     });
 });
 
 // Get all recordings
-router.get('/admin/recordings', function(req, res) {
+router.get('/admin/recordings', function(req, res, next) {
     Recording.find(function(err, recordings) {
+        if (err) { return next(err); }
         res.status(200).json({ recordings: recordings });
     });
 });
 
 // Get all sent messages
-router.get('/admin/messages', function(req, res) {
+router.get('/admin/messages', function(req, res, next) {
     Message.find(function(err, messages) {
+        if (err) { return next(err); }
         res.status(200).json({ messages: messages });
     });
 });
@@ -116,22 +125,25 @@ router.use('/private', function(req, res, next) {
 });
 
 // Get private performances
-router.get('/private/performances', function(req, res) {
+router.get('/private/performances', function(req, res, next) {
     Performance.where('isPrivate', true).exec(function(err, performances) {
+        if (err) { return next(err); }
         res.status(200).json({ performances: performances });
     });
 });
 
 // Get private photos
-router.get('/private/photos', function(req, res) {
+router.get('/private/photos', function(req, res, next) {
     Photo.where('isPrivate', true).exec(function(err, photos) {
+        if (err) { return next(err); }
         res.status(200).json({ photos: photos });
     });
 });
 
 // Get private recordings
-router.get('/private/recordings', function(req, res) {
+router.get('/private/recordings', function(req, res, next) {
     Recording.where('isPrivate', true).exec(function(err, recordings) {
+        if (err) { return next(err); }
         res.status(200).json({ recordings: recordings });
     });
 });
@@ -142,12 +154,14 @@ router.get('/private/recordings', function(req, res) {
 
 // Login to become admin or privileged user
 router.post('/login', function(req, res, next) {
-    passport.authenticate('local', function(err, user) {
+    passport.authenticate('local', function(err, user, info) {
 
-        if (!user) { return res.sendStatus(401); }
+        if (err) { return next(err); }
+
+        if (!user) { return next(info); }
 
         req.logIn(user, function(err) {
-            if (err) { return res.sendStatus(500); }
+            if (err) { return next(err); }
             var currentUser = {
                 username: user.username,
                 isAdmin: user.isAdmin
@@ -164,37 +178,46 @@ router.get('/logout', function(req, res) {
 });
 
 // Send a message
-router.post('/message', function(req, res) {
+router.post('/message', function(req, res, next) {
     var message = new Message();
 
     message.name = req.body.name;
     message.email = req.body.email;
     message.body = req.body.body;
 
-    message.save(function () {
+    message.save(function(err) {
+        if (err) { return next(err); }
         res.sendStatus(200);
     });
 });
 
 // Get public performances
-router.get('/performances', function(req, res) {
+router.get('/performances', function(req, res, next) {
     Performance.where('isPrivate', false).exec(function(err, performances) {
+        if (err) { return next(err); }
         res.status(200).json({ performances: performances });
     });
 });
 
 // Get public photos
-router.get('/photos', function(req, res) {
+router.get('/photos', function(req, res, next) {
     Photo.where('isPrivate', false).exec(function(err, photos) {
+        if (err) { return next(err); }
         res.status(200).json({ photos: photos });
     });
 });
 
 // Get public recordings
-router.get('/recordings', function(req, res) {
+router.get('/recordings', function(req, res, next) {
     Recording.where('isPrivate', false).exec(function(err, recordings) {
+        if (err) { return next(err); }
         res.status(200).json({ recordings: recordings });
     });
+});
+
+// Middleware to handle errors
+router.use(function(err, req, res, next) {
+    res.status(err.status || 500).json(err);
 });
 
 module.exports = router;
