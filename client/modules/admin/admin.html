@@ -6,9 +6,7 @@
 
     <form class="Form" ng-submit="login()">
 
-      <div class="Form-errorMessage" ng-if="error">
-        {{ error }}
-      </div>
+      <div class="alert alert-danger" ng-if="error">{{ error }}</div>
 
       <div class="Form-section">
         <div class="Form-field">

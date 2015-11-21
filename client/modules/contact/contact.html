@@ -22,10 +22,10 @@
       <h3 class="Contact-title">Send a Message</h3>
 
       <div class="Form-case" ng-if="messageSent">
-        <div class="Form-successMessage" ng-if="messageSuccess">
+        <div class="alert alert-success" ng-if="messageSuccess">
           Thank you, I have received your message. I will contact you as soon as I can.
         </div>
-        <div class="Form-errorMessage" ng-if="!messageSuccess">
+        <div class="alert alert-danger" ng-if="!messageSuccess">
           Uh oh! Something went wrong. Please try again.
         </div>
       </div>
