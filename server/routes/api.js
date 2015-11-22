@@ -8,7 +8,7 @@ var Message = require('../models/message'),
     User = require('../models/user');
 
 // ------------------------------------------------------------
-//                     Admin Endpoints
+//                       Admin Endpoints
 // ------------------------------------------------------------
 
 // Middleware to require admin user credentials
@@ -112,7 +112,7 @@ router.get('/admin/messages', function(req, res, next) {
 });
 
 // ------------------------------------------------------------
-//                  Privileged User Endpoints
+//                      Private Endpoints
 // ------------------------------------------------------------
 
 // Middleware to require privileged user credentials
@@ -149,7 +149,7 @@ router.get('/private/recordings', function(req, res, next) {
 });
 
 // ------------------------------------------------------------
-//                  Anonymous User Endpoints
+//                       Public Endpoints
 // ------------------------------------------------------------
 
 // Login to become admin or privileged user
@@ -215,7 +215,7 @@ router.get('/recordings', function(req, res, next) {
     });
 });
 
-// Middleware to handle errors
+// Middleware to handle all errors
 router.use(function(err, req, res, next) {
     res.status(err.status || 500).json(err);
 });
