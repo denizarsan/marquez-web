@@ -265,7 +265,7 @@ module.exports = function(grunt) {
 
     require('load-grunt-tasks')(grunt);
 
-    grunt.registerTask('build-dev', ['clean:dev',
+    grunt.registerTask('serve-dev', ['clean:dev',
                                      'ngtemplates:dev',
                                      'concat',
                                      'sass:dev',
