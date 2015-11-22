@@ -1,5 +1,5 @@
-var router = require('express').Router();
 var passport = require('passport');
+var router = require('express').Router();
 
 var Message = require('../models/message'),
     Performance = require('../models/performance'),
@@ -20,19 +20,19 @@ router.use('/admin', function(req, res, next) {
     }
 });
 
-// Add a new user
-router.post('/admin/user', function(req, res, next) {
-    User.register(new User({ username: req.body.username }), req.body.password, function(err) {
+// Delete a message
+router.delete('/admin/message/:id', function(req, res, next) {
+    Message.remove({ _id: req.params.id }, function(err) {
         if (err) { return next(err); }
         res.sendStatus(200);
     });
 });
 
-// Get all registered users
-router.get('/admin/users', function(req, res, next) {
-    User.find(function(err, users) {
+// Get all sent messages
+router.get('/admin/messages', function(req, res, next) {
+    Message.find(function(err, messages) {
         if (err) { return next(err); }
-        res.status(200).json({ users: users });
+        res.status(200).json({ messages: messages });
     });
 });
 
@@ -45,6 +45,22 @@ router.post('/admin/performance', function(req, res, next) {
     performance.isPrivate = req.body.isPrivate;
 
     performance.save(function(err) {
+        if (err) { return next(err); }
+        res.sendStatus(200);
+    });
+});
+
+// Delete a performance
+router.delete('/admin/performance/:id', function(req, res, next) {
+    Performance.remove({ _id: req.params.id }, function(err) {
+        if (err) { return next(err); }
+        res.sendStatus(200);
+    });
+});
+
+// Update a performance
+router.put('/admin/performance/:id', function(req, res, next) {
+    Performance.update({ _id: req.params.id }, req.body, function(err) {
         if (err) { return next(err); }
         res.sendStatus(200);
     });
@@ -67,6 +83,22 @@ router.post('/admin/photo', function(req, res, next) {
     photo.isPrivate = req.body.isPrivate;
 
     photo.save(function(err) {
+        if (err) { return next(err); }
+        res.sendStatus(200);
+    });
+});
+
+// Delete a photo
+router.delete('/admin/photo/:id', function(req, res, next) {
+    Photo.remove({ _id: req.params.id }, function(err) {
+        if (err) { return next(err); }
+        res.sendStatus(200);
+    });
+});
+
+// Update a photo
+router.put('/admin/photo/:id', function(req, res, next) {
+    Photo.update({ _id: req.params.id }, req.body, function(err) {
         if (err) { return next(err); }
         res.sendStatus(200);
     });
@@ -95,6 +127,22 @@ router.post('/admin/recording', function(req, res, next) {
     });
 });
 
+// Delete a recording
+router.delete('/admin/recording/:id', function(req, res, next) {
+    Recording.remove({ _id: req.params.id }, function(err) {
+        if (err) { return next(err); }
+        res.sendStatus(200);
+    });
+});
+
+// Update a recording
+router.put('/admin/recording/:id', function(req, res, next) {
+    Recording.update({ _id: req.params.id }, req.body, function(err) {
+        if (err) { return next(err); }
+        res.sendStatus(200);
+    });
+});
+
 // Get all recordings
 router.get('/admin/recordings', function(req, res, next) {
     Recording.find(function(err, recordings) {
@@ -103,11 +151,27 @@ router.get('/admin/recordings', function(req, res, next) {
     });
 });
 
-// Get all sent messages
-router.get('/admin/messages', function(req, res, next) {
-    Message.find(function(err, messages) {
+// Add a new user
+router.post('/admin/user', function(req, res, next) {
+    User.register(new User({ username: req.body.username }), req.body.password, function(err) {
         if (err) { return next(err); }
-        res.status(200).json({ messages: messages });
+        res.sendStatus(200);
+    });
+});
+
+// Delete a user
+router.delete('/admin/user/:id', function(req, res, next) {
+    User.remove({ _id: req.params.id }, function(err) {
+        if (err) { return next(err); }
+        res.sendStatus(200);
+    });
+});
+
+// Get all registered users
+router.get('/admin/users', function(req, res, next) {
+    User.find(function(err, users) {
+        if (err) { return next(err); }
+        res.status(200).json({ users: users });
     });
 });
 
