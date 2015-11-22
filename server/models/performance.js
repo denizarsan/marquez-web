@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var Performance = new mongoose.Schema({
-    id: String,
+    videoId: String,
     caption: String,
     isPrivate: { type: Boolean, default: false }
 });

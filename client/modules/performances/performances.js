@@ -11,21 +11,21 @@ angular.module('marquez-web.performances', [])
     .controller('PerformancesController', [
 
         '$scope',
-        'Performances',
+        'Public',
 
         function($scope,
-                 Performances) {
+                 Public) {
 
             $scope.mediaList = [];
 
-            Performances.list()
+            Public.getPerformances()
                 .then(
-                    function listPerformancesSuccess(data) {
+                    function getPerformancesSuccess(data) {
                         _.each(data.performances, function(performance) {
                             $scope.mediaList.push({
-                                url: 'http://www.youtube.com/embed/' + performance.id,
+                                url: 'http://www.youtube.com/embed/' + performance.videoId,
                                 caption: performance.caption,
-                                thumbnailUrl: 'http://img.youtube.com/vi/' + performance.id + '/hqdefault.jpg'
+                                thumbnailUrl: 'http://img.youtube.com/vi/' + performance.videoId + '/hqdefault.jpg'
                             });
                         });
                     }

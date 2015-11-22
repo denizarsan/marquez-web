@@ -11,10 +11,10 @@ angular.module('marquez-web.contact', [])
     .controller('ContactController', [
 
         '$scope',
-        'Messages',
+        'Public',
 
         function($scope,
-                 Messages) {
+                 Public) {
 
             $scope.messageSent = false;
             $scope.messageSuccess = false;
@@ -22,7 +22,7 @@ angular.module('marquez-web.contact', [])
             $scope.message = {};
 
             $scope.sendMessage = function() {
-                Messages.send($scope.message)
+                Public.sendMessage($scope.message)
                     .then(
                         function sendMessageSuccess() {
                             $scope.messageSuccess = true;

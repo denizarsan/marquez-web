@@ -16,10 +16,6 @@ angular.module('resources.auth', [])
                 logout: {
                     method: 'GET',
                     url: apiPath + '/logout'
-                },
-                register: {
-                    method: 'POST',
-                    url: apiPath + '/register'
                 }
             });
         }
@@ -73,27 +69,6 @@ angular.module('resources.auth', [])
                             }
                         ).catch(
                             function logoutFailure(error) {
-                                deferred.reject(error);
-                            }
-                        );
-
-                    return deferred.promise;
-                },
-
-                register: function(username, password) {
-                    var deferred = $q.defer(),
-                        params = {
-                            username: username,
-                            password: password
-                        };
-
-                    AuthAPI.register(params).$promise
-                        .then(
-                            function registerSuccess(data) {
-                                deferred.resolve(data);
-                            }
-                        ).catch(
-                            function registerFailure(error) {
                                 deferred.reject(error);
                             }
                         );

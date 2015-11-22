@@ -11,16 +11,16 @@ angular.module('marquez-web.photos', [])
     .controller('PhotosController', [
 
         '$scope',
-        'Photos',
+        'Public',
 
         function($scope,
-                 Photos) {
+                 Public) {
 
             $scope.mediaList = [];
 
-            Photos.list()
+            Public.getPhotos()
                 .then(
-                    function listPhotosSuccess(data) {
+                    function getPhotosSuccess(data) {
                         _.each(data.photos, function(photo) {
                             $scope.mediaList.push({
                                 url: photo.url,

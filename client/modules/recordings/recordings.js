@@ -11,10 +11,10 @@ angular.module('marquez-web.recordings', [])
     .controller('RecordingsController', [
 
         '$scope',
-        'Recordings',
+        'Public',
 
         function($scope,
-                 Recordings) {
+                 Public) {
 
             $scope.getRecordingUrl = function(embedUrl) {
                 var staticUrl = 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/',
@@ -26,9 +26,9 @@ angular.module('marquez-web.recordings', [])
             };
 
             $scope.recordingList = [];
-            Recordings.list()
+            Public.getRecordings()
                 .then(
-                    function listRecordingsSuccess(data) {
+                    function getRecordingsSuccess(data) {
                         _.each(data.recordings, function(recording) {
                             $scope.recordingList.push({
                                 url: $scope.getRecordingUrl(recording.url),
